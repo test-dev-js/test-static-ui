@@ -1,49 +1,82 @@
-/* General */
 :root{
-  --bg:#fff6f9;
-  --accent:#ff4d6d;
-  --cake-cream:#fff3e6;
-  --cake-pink:#ffd6e0;
-  --cake-choc:#8b5a3c;
-  --candle:#fff;
+  --bg:#fff0f6;
+  --card:#fff6fb;
+  --accent:#ff6b9a;
+  --muted:#8b6f7a;
+  --white:#ffffff;
+  --glass: rgba(255,255,255,0.6);
+  --smooth: cubic-bezier(.2,.9,.4,1);
 }
+
 *{box-sizing:border-box}
-body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(180deg,var(--bg),#fff); color:#333; display:flex; min-height:100vh; align-items:center; justify-content:center}
-main{padding:24px; text-align:center; max-width:980px}
-h1{font-size:2rem; margin-bottom:8px}
-.btn{background:var(--accent); color:white; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; box-shadow:0 6px 18px rgba(255,77,109,0.18); transition:transform .12s ease}
-.btn.secondary{background:transparent; color:var(--accent); border:2px solid rgba(255,77,109,0.14)}
-.btn:active{transform:translateY(1px)}
-.home .typewriter{margin:18px auto; font-weight:600; font-size:1.2rem}
-.cursor{display:inline-block; margin-left:6px; opacity:1; animation:blink 1s steps(2,end) infinite}
-@keyframes blink{50%{opacity:0}}
-.home-cta{margin-top:8px}
-
-/* Birthday page layout */
-.birthday-page .cake-scene{display:flex; flex-direction:column; align-items:center; gap:14px}
-.cake{position:relative; width:420px; max-width:90vw; height:260px; margin:16px 0}
-.cake-layer{position:absolute; left:50%; transform:translateX(-50%); border-radius:18px; box-shadow:0 18px 40px rgba(139,90,60,0.12);}
-.layer-top{top:18px; width:80%; height:70px; background:linear-gradient(180deg,var(--cake-cream),#fff); z-index:4}
-.layer-middle{top:60px; width:86%; height:90px; background:linear-gradient(180deg,var(--cake-pink),#ffd1de); z-index:3}
-.layer-bottom{top:120px; width:92%; height:120px; background:linear-gradient(180deg,var(--cake-choc),#7a4a32); z-index:2}
-.frosting{position:absolute; top:-14px; left:6%; right:6%; height:30px; background:linear-gradient(180deg,#fff,#ffe9f0); border-radius:16px; box-shadow:inset 0 6px 12px rgba(255,255,255,0.6)}
-
-/* Candles */
-.candles{position:absolute; top:4px; left:50%; transform:translateX(-50%); width:80%; display:flex; justify-content:space-between; padding:0 12px; z-index:6}
-.candle{width:18px; height:70px; background:linear-gradient(180deg,#ffffff,#ffeef2); border-radius:6px; position:relative; display:flex; align-items:flex-start; justify-content:center}
-.candle::after{content:''; position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); width:28px; height:8px; background:rgba(0,0,0,0.06); border-radius:6px}
-.wick{width:2px; height:12px; background:#222; margin-top:8px}
-.flame{position:absolute; top:2px; width:12px; height:20px; background: radial-gradient(circle at 35% 35%, #fff4b8 0, #ffcf4d 18%, #ff7b4d 55%, rgba(255,123,77,0.9) 70%); border-radius:50% 50% 40% 40%; filter:drop-shadow(0 6px 8px rgba(255,110,110,0.18)); transform-origin:center bottom; animation:flame 900ms ease-in-out infinite}
-.flame[data-on="false"]{opacity:0; transform:scaleY(0.2) translateY(-6px); transition:opacity .25s, transform .25s}
-@keyframes flame{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-4px) scaleY(1.05)}100%{transform:translateY(0) scaleY(1)}}
-
-/* Particles canvas */
-.particles{position:fixed; left:0; top:0; width:100vw; height:100vh; pointer-events:none; z-index:999}
-
-.note{color:#6b6b6b; margin-top:8px}
-
-/* Small responsive tweaks */
-@media (max-width:520px){
-  .cake{height:200px}
-  .candle{height:58px}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Georgia, serif;
+  background: linear-gradient(180deg,#fff5f9 0%, #fff0f6 60%, #ffeef8 100%);
+  color:#3b1f2b;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:background .4s var(--smooth);
 }
+
+/* layout */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 1.25rem;
+  position:sticky;
+  top:0;
+  z-index:40;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,240,250,0.7));
+  backdrop-filter: blur(6px);
+}
+.nav__brand{font-weight:700;color:var(--accent);text-decoration:none}
+.nav__links{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;align-items:center}
+.nav__links a{color:var(--muted);text-decoration:none;padding:.25rem .5rem;border-radius:6px;transition:all .2s var(--smooth)}
+.nav__links a:hover{color:var(--accent);transform:translateY(-2px)}
+.cta{background:linear-gradient(90deg,var(--accent),#ff93b2);color:#fff;padding:.5rem .75rem;border-radius:8px}
+
+.container{max-width:980px;margin:2rem auto;padding:0 1rem}
+
+.hero{padding:4rem 0;text-align:center}
+.hero__title{font-size:clamp(1.6rem,4vw,2.8rem);margin:.2rem 0;color:var(--accent);transition:transform .6s var(--smooth)}
+.hero__lead{color:var(--muted);max-width:60ch;margin:.5rem auto 1.25rem}
+
+/* Typewriter */
+.typewriter-line{font-size:clamp(1rem,3vw,1.25rem);color:#703049;margin:.25rem 0;display:inline-block}
+.typewriter-line .caret{display:inline-block;margin-left:6px;opacity:1;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.panel{background:var(--card);padding:1.25rem;border-radius:16px;margin:1rem 0;box-shadow:0 8px 30px rgba(203,153,174,0.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+.card{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8),transparent);text-align:center;color:#5b2b3a}
+
+/* Birthday specific */
+.birthday-container{display:flex;justify-content:center;align-items:center;min-height:65vh}
+.birthday-stage{text-align:center;max-width:880px;width:100%}
+.birthday-title{font-size:clamp(1.25rem,4vw,2rem);margin-bottom:0.5rem;color:var(--accent)}
+.birthday-sub{color:var(--muted);margin-bottom:1rem}
+
+/* SVG cake wrapper */
+.svg-cake-wrap{max-width:460px;margin:0 auto}
+.cake-svg{width:100%;height:auto}
+
+/* flame animation via CSS for SVG .flame groups */
+.flame{transform-origin:6px 6px; animation:flame-flicker 700ms var(--smooth) infinite}
+@keyframes flame-flicker{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.05)}100%{transform:translateY(0) scaleY(1)}}
+.flame.extinguished{opacity:0;transform:scaleY(0.2) translateY(-6px);transition:opacity .6s, transform .6s}
+
+.birthday-controls{margin-top:1rem;display:flex;gap:.75rem;align-items:center;justify-content:center;flex-wrap:wrap}
+.btn--muted{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--muted)}
+.hint{color:var(--muted);font-size:.95rem}
+
+.confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:60}
+
+@media (max-width:560px){
+  .svg-cake-wrap{max-width:320px}
+}
+
+.fade-out{opacity:0;transform:translateY(8px)}
+.fade-in{opacity:1;transform:translateY(0);transition:opacity .45s var(--smooth), transform .45s var(--smooth)}

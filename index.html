@@ -1,25 +1,49 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Celebrate Sonam</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For You — A Little Celebration</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
-  <main class="home">
-    <h1>Happy Birthday, Sonam!</h1>
-    <p id="home-message">Welcome — let's make this birthday unforgettable. Click the cake to begin the celebration!</p>
+<body class="page page--home">
+  <nav class="nav">
+    <a href="index.html" class="nav__brand">For You</a>
+    <ul class="nav__links">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#gallery">Moments</a></li>
+      <li><a href="birthday.html" class="cta">Birthday</a></li>
+    </ul>
+  </nav>
 
-    <div class="typewriter">
-      <span id="typewriter"></span>
-      <span class="cursor">|</span>
-    </div>
+  <main id="content" class="container">
+    <section id="hero" class="hero">
+      <h1 class="hero__title">Hey, Miss. Sharma</h1>
+      <div class="typewriter-line"> <span id="typewriter" aria-live="polite"></span><span class="caret">|</span></div>
+      <p class="hero__lead">A little effort just for you, from one &amp; only yours sweet potato.</p>
+      <p><a href="birthday.html" class="btn btn--primary">Open the Birthday Surprise</a></p>
+    </section>
 
-    <p class="home-cta">Head over to the cake page and join the fun.</p>
-    <a class="btn" href="birthday.html">Open Cake</a>
+    <section id="about" class="panel">
+      <h2>Why this</h2>
+      <p>This tiny site is a heartfelt page made to celebrate you. It’s responsive, warm, and crafted to feel intimate on every screen.</p>
+    </section>
+
+    <section id="gallery" class="panel">
+      <h2>Little Moments</h2>
+      <div class="grid">
+        <div class="card">💌 A note</div>
+        <div class="card">🌹 A rose</div>
+        <div class="card">✨ Our memories</div>
+      </div>
+    </section>
   </main>
 
-  <script src="assets/script.js"></script>
+  <footer class="site-footer">
+    <p>Made with ❤️ — 2026</p>
+  </footer>
+
+  <script src="assets/script.js" defer></script>
 </body>
 </html>

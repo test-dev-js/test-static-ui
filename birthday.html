@@ -1,44 +1,134 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Birthday Cake — Sonam</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday — Just for You</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
-  <main class="birthday-page">
-    <h1>Make a wish for Sonam!</h1>
+<body class="page page--birthday">
+  <nav class="nav">
+    <a href="index.html" class="nav__brand">For You</a>
+    <ul class="nav__links">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#gallery">Moments</a></li>
+      <li><a href="birthday.html" class="active cta">Birthday</a></li>
+    </ul>
+  </nav>
 
-    <section class="cake-scene">
-      <div id="cake" class="cake" title="Click to blow candles">
-        <div class="cake-layer layer-top">
-          <div class="frosting"></div>
-        </div>
-        <div class="cake-layer layer-middle"></div>
-        <div class="cake-layer layer-bottom"></div>
+  <main id="content" class="container birthday-container">
+    <section class="birthday-stage">
+      <h1 class="birthday-title">Happy Birthday, my love!</h1>
+      <p class="birthday-sub">Tap the cake, blow gently into the mic, or press the button to make a wish. Use Reset to relight.</p>
 
-        <div class="candles" id="candles">
-          <!-- 5 candles -->
-          <div class="candle" data-index="0"><div class="wick"></div><div class="flame" data-on="true"></div></div>
-          <div class="candle" data-index="1"><div class="wick"></div><div class="flame" data-on="true"></div></div>
-          <div class="candle" data-index="2"><div class="wick"></div><div class="flame" data-on="true"></div></div>
-          <div class="candle" data-index="3"><div class="wick"></div><div class="flame" data-on="true"></div></div>
-          <div class="candle" data-index="4"><div class="wick"></div><div class="flame" data-on="true"></div></div>
+      <div class="birthday-scene">
+        <!-- Inline SVG cake (candles' flames have class 'flame') -->
+        <div id="svg-cake-wrap" class="svg-cake-wrap">
+          <svg id="cake-svg" width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birthday cake">
+            <defs>
+              <filter id="f-drop" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#e6a1b8" flood-opacity="0.12"/>
+              </filter>
+            </defs>
+
+            <!-- Plate -->
+            <ellipse cx="210" cy="280" rx="170" ry="18" fill="#fff5f9" />
+
+            <!-- Bottom layer -->
+            <rect x="30" y="160" rx="22" ry="22" width="360" height="80" fill="#ffd1e6" filter="url(#f-drop)" />
+            <!-- Middle layer -->
+            <rect x="60" y="120" rx="18" ry="18" width="300" height="64" fill="#fff0f6" />
+            <!-- Top layer -->
+            <rect x="90" y="88" rx="14" ry="14" width="240" height="44" fill="#fff7fb" />
+
+            <!-- Sprinkles (simple circles) -->
+            <g id="sprinkles" fill="#ff9bb3" opacity="0.95">
+              <circle cx="140" cy="130" r="4" />
+              <circle cx="180" cy="110" r="3.5" fill="#ffd1e6" />
+              <circle cx="220" cy="125" r="3" fill="#ffb8d0" />
+              <circle cx="260" cy="105" r="4" fill="#ffc1d9" />
+            </g>
+
+            <!-- Candles group: position them across the top layer -->
+            <g id="candles-group" transform="translate(0,70)">
+              <!-- create 7 candles evenly spaced -->
+              <g transform="translate(50,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+              <g transform="translate(100,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+              <g transform="translate(150,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+              <g transform="translate(200,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+              <g transform="translate(250,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+              <g transform="translate(300,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+              <g transform="translate(350,0)">
+                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
+                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
+                <g class="flame" transform="translate(6,-6)">
+                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
+                </g>
+              </g>
+
+            </g>
+
+          </svg>
         </div>
+
       </div>
 
-      <div class="controls">
-        <button id="blowBtn" class="btn">Blow Candles</button>
-        <button id="resetBtn" class="btn secondary">Reset</button>
+      <div class="birthday-controls">
+        <button id="playBtn" class="btn">Play Birthday</button>
+        <button id="resetBtn" class="btn btn--muted">Reset Candles</button>
+        <span class="hint">Or blow into your mic / tap the cake to blow the candles for a wish 💫</span>
       </div>
+
+      <canvas id="confetti" class="confetti-canvas" aria-hidden="true"></canvas>
     </section>
-
-    <canvas id="particlesCanvas" class="particles"></canvas>
-
-    <p class="note">Tip: Press "Blow Candles" or click the cake to start the melody and confetti. Reset will relight candles and restart effects.</p>
   </main>
 
-  <script src="assets/script.js"></script>
+  <footer class="site-footer">
+    <p>With love ❤️</p>
+  </footer>
+
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
