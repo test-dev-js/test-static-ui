@@ -99,7 +99,7 @@
       const start = ctx.currentTime + when;
       g.gain.setValueAtTime(0.0001, start);
       g.gain.exponentialRampToValueAtTime(0.16, start + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, start + when + duration);
+      g.gain.exponentialRampToValueAtTime(0.0001, start + duration);
       o.start(start);
       o.stop(start + duration + 0.02);
     }
@@ -124,7 +124,7 @@
       canvas.style.width = innerWidth + 'px';
       canvas.style.height = innerHeight + 'px';
       const ctx = canvas.getContext('2d');
-      ctx.scale(devicePixelRatio, devicePixelRatio);
+      ctx.scale(devicePixelRatio,devicePixelRatio);
       confettiPieces = [];
       const colors = ['#ff9bb3','#ffd1e6','#ffefef','#ffc1d9','#ff7aa2'];
       for (let i=0;i<140;i++){
@@ -152,23 +152,35 @@
         for (const p of confettiPieces) {
           p.x += p.vx; p.y += p.vy; p.rot += p.drot;
           if (p.y > innerHeight + 20) { p.y = -20 - Math.random()*innerHeight; p.x = Math.random()*innerWidth; }
-          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180);
-          ctx.fillStyle = p.color; const s = p.size;
-          ctx.beginPath(); ctx.moveTo(0, -s/2); ctx.bezierCurveTo(s/2, -s, s, -s/4, 0, s/2); ctx.bezierCurveTo(-s, -s/4, -s/2, -s, 0, -s/2); ctx.fill(); ctx.restore();
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          const s = p.size;
+          ctx.beginPath();
+          ctx.moveTo(0, -s/2);
+          ctx.bezierCurveTo(s/2, -s, s, -s/4, 0, s/2);
+          ctx.bezierCurveTo(-s, -s/4, -s/2, -s, 0, -s/2);
+          ctx.fill();
+          ctx.restore();
         }
         confettiRAF = requestAnimationFrame(frame);
       }
       frame();
     }
 
-    function stopConfetti() { confettiRunning = false; if (confettiRAF) cancelAnimationFrame(confettiRAF); const canvas = confettiCanvas; const ctx = canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height); }
+    function stopConfetti() {
+      confettiRunning = false;
+      if (confettiRAF) cancelAnimationFrame(confettiRAF);
+      const canvas = confettiCanvas; const ctx = canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
 
     function extinguish() {
       if (!candlesLit) return;
       candlesLit = false;
       flames.forEach(f => f.classList.add('extinguished'));
       playHappy();
-      startConfetti();
+      startConfetti(); // continuous until reset
     }
 
     function relight() {
@@ -202,14 +214,16 @@
     }
 
     // wiring
+    // make SVG respond to clicks and keyboard
     const svgWrap = document.getElementById('svg-cake-wrap');
     svgWrap && svgWrap.addEventListener('click', (e)=>{ e.preventDefault(); extinguish(); });
     svgWrap && svgWrap.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); extinguish(); } });
 
-    playBtn && playBtn.addEventListener('click', ()=>{ try{ ensureAudio(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); }catch(e){} extinguish(); });
+    playBtn && playBtn.addEventListener('click', ()=>{ try{ ensureAudio(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); } catch(e){} extinguish(); });
     resetBtn && resetBtn.addEventListener('click', (e)=>{ e.preventDefault(); relight(); });
 
     setupMic();
+    // prime audio (quiet) to increase chance AudioContext starts on user gesture
     (function prime() { try { const ctx = ensureAudio(); const o = ctx.createOscillator(); const g = ctx.createGain(); g.gain.value = 0.00001; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + 0.01); } catch(e) {} }());
   }
 

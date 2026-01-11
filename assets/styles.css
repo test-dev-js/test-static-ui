@@ -1,76 +1,103 @@
-/* Site-wide styles (updated hero background) */
 :root{
-  --hero-height-mobile: 220px;
-  --hero-height-desktop: 420px;
+  --bg:#fff0f6;
+  --card:#fff6fb;
+  --accent:#ff6b9a;
+  --muted:#8b6f7a;
+  --white:#ffffff;
+  --glass: rgba(255,255,255,0.6);
+  --smooth: cubic-bezier(.2,.9,.4,1);
+  --overlay-pink: rgba(255, 200, 220, 0.62);
 }
+
 *{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#111;background:#fff}
-.container{max-width:1100px;margin:0 auto;padding:0 20px}
-.site-header{padding:18px 0}
-.logo{font-weight:700;text-decoration:none;color:inherit}
-
-/* HERO GRID: full-bleed section that sits edge-to-edge of the viewport. */
-.hero-grid{
-  /* Make the section full-bleed even if it's inside a centered container */
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  margin-right:calc(50% - 50vw);
-
-  display:grid;
-  grid-template-columns:repeat(2,1fr); /* mobile-first: 2 columns -> 2x2 grid */
-  grid-auto-rows:var(--hero-height-mobile);
-  gap:0;
-  position:relative;
-  overflow:hidden;
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Georgia, serif;
+  background: linear-gradient(180deg,#fff5f9 0%, #fff0f6 60%, #ffeef8 100%);
+  color:#3b1f2b;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-/* Individual tiles use background-image to cover their grid cell. */
-.hero-grid .tile{
-  background-color:#ddd;
-  background-size:cover;
-  background-position:center center;
-  min-height:var(--hero-height-mobile);
+/* Nav */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;position:fixed;top:0;left:0;right:0;z-index:60;
+  background: linear-gradient(180deg, rgba(255,255,255,0.70), rgba(255,240,250,0.55));
+  backdrop-filter: blur(6px);
+}
+.nav__brand{font-weight:700;color:var(--accent);text-decoration:none}
+.nav__links{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;align-items:center}
+.nav__links a{color:var(--muted);text-decoration:none;padding:.25rem .5rem;border-radius:8px;transition:all .18s var(--smooth)}
+.nav__links a:hover{color:var(--accent);transform:translateY(-3px)}
+.cta{background:linear-gradient(90deg,var(--accent),#ff93b2);color:#fff;padding:.45rem .75rem;border-radius:8px}
+
+/* container */
+.container{max-width:980px;margin:6rem auto;padding:2rem 1rem}
+
+/* Sections */
+section[data-section]{margin:3rem 0;padding:3rem 1rem;border-radius:12px}
+
+/* HERO */
+.hero--full{position:relative;min-height:78vh;display:flex;align-items:center;justify-content:center;padding:0;margin:0;overflow:hidden}
+.hero__overlay{
+  position:absolute;inset:0;
+  /* four fruit images fixed in corners (replace URLs if you prefer local images) */
+  background-image:
+    url('https://images.unsplash.com/photo-1572441710265-2393f6b5bfc8?w=1200&q=80&auto=format&fit=crop'),
+    url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1200&q=80&auto=format&fit=crop'),
+    url('https://images.unsplash.com/photo-1528825871115-3581a5387919?w=1200&q=80&auto=format&fit=crop'),
+    url('https://images.unsplash.com/photo-1528825871115-3581a5387919?w=1200&q=80&auto=format&fit=crop');
+  background-position: top left, top right, bottom left, bottom right;
+  background-repeat:no-repeat;
+  background-size: 28% 28%, 28% 28%, 28% 28%, 28% 28%;
+  background-attachment: fixed;
+  mix-blend-mode: normal;
+  z-index:0;
+}
+.hero--full::after{
+  /* semi-transparent pink faded layer overlay */
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,245,249,0.6), rgba(255,230,240,0.65));backdrop-filter: blur(2px);z-index:1;
 }
 
-/* Provide classes for each tile so images can be swapped easily. The CSS
-   references images relative to this stylesheet (assets/styles.css), so
-   images should live in assets/images/. */
-.tile-1{ background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.15)), url('images/hero-1.jpg'); }
-.tile-2{ background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.15)), url('images/hero-2.jpg'); }
-.tile-3{ background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.15)), url('images/hero-3.jpg'); }
-.tile-4{ background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.15)), url('images/hero-4.jpg'); }
+/* content sits above overlay */
+.hero__inner{position:relative;z-index:2;text-align:center;padding:6rem 1rem;max-width:880px}
+.hero__title{font-size:clamp(1.8rem,5vw,3.4rem);margin:0 0 .65rem;color:var(--accent)}
+.hero__lead{color:var(--muted);margin-top:.6rem}
 
-/* Caption/overlay centered over the grid */
-.hero-grid .hero-caption{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:100%;
-  color:#fff;
-  text-align:center;
-  pointer-events:none; /* let clicks pass through to tiles if needed */
-  padding:0 20px;
+/* typewriter */
+.typewriter-line{font-size:clamp(1rem,3vw,1.25rem);color:#703049;margin:.25rem 0;display:inline-block}
+.caret{margin-left:6px;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* scroll down arrow (minimal) */
+.scroll-down{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);border:0;background:transparent;padding:8px;cursor:pointer;z-index:10;display:flex;align-items:center}
+.scroll-down .arrow{width:20px;height:20px;border-left:2px solid rgba(80,20,40,.85);border-bottom:2px solid rgba(80,20,40,.85);transform:rotate(-45deg);display:inline-block;transition:transform .18s}
+.scroll-down:hover .arrow{transform:rotate(-45deg) translateY(6px)}
+.scroll-down:focus{outline:2px solid rgba(255,140,160,0.25);outline-offset:6px}
+
+/* Panel style */
+.panel{background:var(--card);padding:2rem;border-radius:16px;box-shadow:0 12px 40px rgba(203,153,174,0.06)}
+
+/* Birthday */
+.birthday-panel .birthday-stage{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.svg-cake-wrap{cursor:pointer;outline:none}
+.flame{transform-origin:6px 6px;animation:flame-flicker 700ms var(--smooth) infinite}
+@keyframes flame-flicker{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.05)}100%{transform:translateY(0) scaleY(1)}}
+.flame.extinguished{opacity:0;transform:scaleY(0.2) translateY(-6px);transition:opacity .5s, transform .5s}
+
+/* buttons */
+.btn{background:linear-gradient(90deg,var(--accent),#ff93b2);color:#fff;padding:.5rem 0.75rem;border-radius:8px;border:0;cursor:pointer}
+.btn--muted{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--muted)}
+
+/* confetti canvas */
+.confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:80}
+
+/* responsive */
+@media (max-width:640px){
+  .nav{padding:.8rem 1rem}
+  .container{margin-top:4.5rem}
+  .hero__inner{padding:4rem 1rem}
+  .hero__title{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .hero__lead{font-size:.95rem}
 }
-.hero-grid .hero-caption h1{margin:0 0 8px;font-size:clamp(20px,4vw,36px);text-shadow:0 2px 8px rgba(0,0,0,0.6)}
-.hero-grid .hero-caption p{margin:0;font-size:clamp(14px,2.2vw,18px);text-shadow:0 1px 6px rgba(0,0,0,0.5)}
-
-/* Larger screens: turn the grid into a single-row 4-column layout */
-@media (min-width:900px){
-  .hero-grid{
-    grid-template-columns:repeat(4,1fr); /* 1x4 on desktop */
-    grid-auto-rows:var(--hero-height-desktop);
-  }
-  .hero-grid .tile{min-height:var(--hero-height-desktop)}
-  .hero-grid .hero-caption{top:60%; transform:translate(-50%,-60%)}
-}
-
-/* Small tweak for very narrow devices */
-@media (max-width:420px){
-  .hero-grid{grid-auto-rows:180px}
-}
-
-/* Basic content styles */
-.content{padding:40px 0}
-.site-footer{padding:24px 0;text-align:center;color:#666}

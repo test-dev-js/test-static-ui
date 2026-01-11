@@ -3,40 +3,117 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Test Static UI</title>
+  <title>For You — A Little Celebration</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <a class="logo" href="/">Test Static UI</a>
-    </div>
-  </header>
+<body class="spa">
 
-  <main>
-    <!-- Hero: full-bleed 4-image grid on desktop, 2x2 on mobile -->
-    <section class="hero-grid" aria-label="Hero gallery">
-      <div class="tile tile-1" role="img" aria-label="Hero image 1"></div>
-      <div class="tile tile-2" role="img" aria-label="Hero image 2"></div>
-      <div class="tile tile-3" role="img" aria-label="Hero image 3"></div>
-      <div class="tile tile-4" role="img" aria-label="Hero image 4"></div>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#home" class="nav__brand">For You</a>
+    <ul class="nav__links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#moments">Moments</a></li>
+      <li><a href="#birthday" class="cta">Birthday</a></li>
+    </ul>
+  </nav>
 
-      <div class="hero-caption" aria-hidden="false">
-        <div class="container">
-          <h1>Welcome to Test Static UI</h1>
-          <p>Beautiful full-bleed hero made from a 4-image grid (1x4 desktop, 2x2 on mobile).</p>
+  <main id="content" class="container">
+
+    <!-- HOME / HERO -->
+    <section id="home" class="hero hero--full" data-section>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <h1 class="hero__title">Hey, Miss. Sharma</h1>
+
+        <div class="typewriter-line" aria-hidden="false">
+          <span id="typewriter" aria-live="polite"></span><span class="caret">|</span>
         </div>
+
+        <p class="hero__lead">A little effort just for you, from one &amp; only yours sweet potato.</p>
+
+        <p><a href="#birthday" class="btn btn--primary" data-no-transition>Open the Birthday Surprise</a></p>
+      </div>
+
+      <button class="scroll-down" id="scrollDown" aria-label="Scroll to next section">
+        <span class="arrow" aria-hidden="true"></span>
+      </button>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="panel" data-section>
+      <h2>Why this</h2>
+      <p>This tiny site is a heartfelt page made to celebrate you. It’s responsive, warm, and crafted to feel intimate on every screen.</p>
+    </section>
+
+    <!-- MOMENTS / GALLERY -->
+    <section id="moments" class="panel" data-section>
+      <h2>Little Moments</h2>
+      <div class="grid">
+        <div class="card">💌 A note</div>
+        <div class="card">🌹 A rose</div>
+        <div class="card">✨ Our memories</div>
       </div>
     </section>
 
-    <section class="content container">
-      <h2>Page content</h2>
-      <p>Replace or extend this content as needed.</p>
+    <!-- BIRTHDAY -->
+    <section id="birthday" class="panel birthday-panel" data-section>
+      <h2>Happy Birthday!</h2>
+      <p class="birthday-sub">Tap the cake, blow gently into the mic, or press Play to make a wish. Use Reset to relight.</p>
+
+      <div class="birthday-stage">
+        <div id="svg-cake-wrap" class="svg-cake-wrap" tabindex="0" role="button" aria-label="Birthday cake — click or blow to extinguish candles">
+          <!-- Inline SVG cake (clear cake visuals). Flames have class .flame -->
+          <svg id="cake-svg" width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birthday cake">
+            <defs>
+              <filter id="f-drop" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#e6a1b8" flood-opacity="0.12"/>
+              </filter>
+            </defs>
+
+            <ellipse cx="210" cy="280" rx="170" ry="18" fill="#fff5f9" />
+
+            <rect x="30" y="160" rx="22" ry="22" width="360" height="80" fill="#ffd1e6" filter="url(#f-drop)" />
+            <rect x="60" y="120" rx="18" ry="18" width="300" height="64" fill="#fff0f6" />
+            <rect x="90" y="88" rx="14" ry="14" width="240" height="44" fill="#fff7fb" />
+
+            <g id="sprinkles" fill="#ff9bb3" opacity="0.95">
+              <circle cx="140" cy="130" r="4" />
+              <circle cx="180" cy="110" r="3.5" fill="#ffd1e6" />
+              <circle cx="220" cy="125" r="3" fill="#ffb8d0" />
+              <circle cx="260" cy="105" r="4" fill="#ffc1d9" />
+            </g>
+
+            <g id="candles-group" transform="translate(0,70)">
+              <!-- 7 candles spaced across -->
+              <g transform="translate(30,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+              <g transform="translate(80,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+              <g transform="translate(130,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+              <g transform="translate(180,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+              <g transform="translate(230,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+              <g transform="translate(280,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+              <g transform="translate(330,0)"><rect x="0" y="0" width="12" height="36" rx="2" fill="#fff"/><rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2"/><g class="flame" transform="translate(6,-6)"><path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/></g></g>
+            </g>
+
+          </svg>
+        </div>
+      </div>
+
+      <div class="birthday-controls">
+        <button id="playBtn" class="btn">Play Birthday</button>
+        <button id="resetBtn" class="btn btn--muted">Reset Candles</button>
+      </div>
+
+      <canvas id="confetti" class="confetti-canvas" aria-hidden="true"></canvas>
     </section>
+
   </main>
 
-  <footer class="site-footer container">
-    <p>&copy; Test Static UI</p>
+  <footer class="site-footer">
+    <p>© 2026 — With love</p>
   </footer>
+
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
