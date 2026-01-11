@@ -44,6 +44,11 @@ body{
 .hero__title{font-size:clamp(1.6rem,4vw,2.8rem);margin:.2rem 0;color:var(--accent);transition:transform .6s var(--smooth)}
 .hero__lead{color:var(--muted);max-width:60ch;margin:.5rem auto 1.25rem}
 
+/* Typewriter */
+.typewriter-line{font-size:clamp(1rem,3vw,1.25rem);color:#703049;margin:.25rem 0;display:inline-block}
+.typewriter-line .caret{display:inline-block;margin-left:6px;opacity:1;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{50%{opacity:0}}
+
 .panel{background:var(--card);padding:1.25rem;border-radius:16px;margin:1rem 0;box-shadow:0 8px 30px rgba(203,153,174,0.08)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
 .card{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8),transparent);text-align:center;color:#5b2b3a}
@@ -59,12 +64,11 @@ body{
 .cake__layer{width:260px;height:36px;background:linear-gradient(180deg,#ffeef2,#ffd8e6);border-radius:10px;margin:6px auto;box-shadow:0 10px 20px rgba(203,153,174,0.2)}
 .cake__layer--middle{width:300px;height:44px;background:linear-gradient(180deg,#ffdfe8,#ffc9df)}
 .cake__layer--bottom{width:340px;height:56px;background:linear-gradient(180deg,#ffd1e6,#ffc0dd)}
-.candles{position:absolute;left:50%;top:-30px;transform:translateX(-50%);display:flex;gap:10px}
+.candles{position:absolute;left:50%;top:-48px;transform:translateX(-50%);display:flex;gap:12px;align-items:flex-end}
 .candle{width:10px;height:36px;background:#fff;border-radius:2px;position:relative;display:flex;align-items:flex-start;justify-content:center}
-.flame{width:8px;height:12px;background: radial-gradient(circle at 40% 30%, #ffd86b, #ff7a7a 70%);border-radius:50% 50% 40% 40%;box-shadow:0 2px 6px rgba(255,140,60,0.6);transform-origin:center bottom;animation:flame-flicker 700ms var(--smooth) infinite}
-@keyframes flame-flicker{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.05)}100%{transform:translateY(0) scaleY(1)}}
-
-.candle.extinguished .flame{opacity:0;transform:scaleY(.3);transition:opacity .6s, transform .6s}
+.flame{width:10px;height:14px;background: radial-gradient(circle at 40% 30%, #ffd86b, #ff7a7a 70%);border-radius:50% 50% 40% 40%;box-shadow:0 4px 10px rgba(255,100,120,0.25);transform-origin:center bottom;animation:flame-flicker 700ms var(--smooth) infinite}
+@keyframes flame-flicker{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.06)}100%{transform:translateY(0) scaleY(1)}}
+.candle.extinguished .flame{opacity:0;transform:scaleY(.2);transition:opacity .6s, transform .6s}
 
 .birthday-controls{margin-top:1rem;display:flex;gap:.75rem;align-items:center;justify-content:center;flex-wrap:wrap}
 .hint{color:var(--muted);font-size:.95rem}
@@ -75,7 +79,7 @@ body{
   .cake__layer{width:180px}
   .cake__layer--middle{width:210px}
   .cake__layer--bottom{width:240px}
-  .candles{gap:6px}
+  .candles{gap:8px;top:-42px}
 }
 
 .fade-out{opacity:0;transform:translateY(8px)}
