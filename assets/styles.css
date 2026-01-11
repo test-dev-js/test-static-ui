@@ -1,0 +1,90 @@
+:root{
+  --bg:#fff0f6;
+  --card:#fff6fb;
+  --accent:#ff6b9a;
+  --muted:#8b6f7a;
+  --white:#ffffff;
+  --glass: rgba(255,255,255,0.6);
+  --smooth: cubic-bezier(.2,.9,.4,1);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Georgia, serif;
+  background: linear-gradient(180deg,#fff5f9 0%, #fff0f6 60%, #ffeef8 100%);
+  color:#3b1f2b;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:background .4s var(--smooth);
+}
+
+/* layout */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 1.25rem;
+  position:sticky;
+  top:0;
+  z-index:40;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,240,250,0.7));
+  backdrop-filter: blur(6px);
+}
+.nav__brand{font-weight:700;color:var(--accent);text-decoration:none}
+.nav__links{list-style:none;margin:0;padding:0;display:flex;gap:.75rem;align-items:center}
+.nav__links a{color:var(--muted);text-decoration:none;padding:.25rem .5rem;border-radius:6px;transition:all .2s var(--smooth)}
+.nav__links a:hover{color:var(--accent);transform:translateY(-2px)}
+.cta{background:linear-gradient(90deg,var(--accent),#ff93b2);color:#fff;padding:.5rem .75rem;border-radius:8px}
+
+.container{max-width:980px;margin:2rem auto;padding:0 1rem}
+
+.hero{padding:4rem 0;text-align:center}
+.hero__title{font-size:clamp(1.6rem,4vw,2.8rem);margin:.2rem 0;color:var(--accent);transition:transform .6s var(--smooth)}
+.hero__lead{color:var(--muted);max-width:60ch;margin:.5rem auto 1.25rem}
+
+.panel{background:var(--card);padding:1.25rem;border-radius:16px;margin:1rem 0;box-shadow:0 8px 30px rgba(203,153,174,0.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+.card{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8),transparent);text-align:center;color:#5b2b3a}
+
+/* Birthday specific */
+.birthday-container{display:flex;justify-content:center;align-items:center;min-height:65vh}
+.birthday-stage{text-align:center;max-width:880px;width:100%}
+.birthday-title{font-size:clamp(1.25rem,4vw,2rem);margin-bottom:0.5rem;color:var(--accent)}
+.birthday-sub{color:var(--muted);margin-bottom:1rem}
+
+/* Cake */
+.cake{display:inline-block;position:relative;padding:1.25rem;border-radius:14px;transform-origin:center;transition:transform .45s var(--smooth);cursor:pointer}
+.cake__layer{width:260px;height:36px;background:linear-gradient(180deg,#ffeef2,#ffd8e6);border-radius:10px;margin:6px auto;box-shadow:0 10px 20px rgba(203,153,174,0.2)}
+.cake__layer--middle{width:300px;height:44px;background:linear-gradient(180deg,#ffdfe8,#ffc9df)}
+.cake__layer--bottom{width:340px;height:56px;background:linear-gradient(180deg,#ffd1e6,#ffc0dd)}
+.candles{position:absolute;left:50%;top:-30px;transform:translateX(-50%);display:flex;gap:10px}
+.candle{width:10px;height:36px;background:#fff;border-radius:2px;position:relative;display:flex;align-items:flex-start;justify-content:center}
+.flame{width:8px;height:12px;background: radial-gradient(circle at 40% 30%, #ffd86b, #ff7a7a 70%);border-radius:50% 50% 40% 40%;box-shadow:0 2px 6px rgba(255,140,60,0.6);transform-origin:center bottom;animation:flame-flicker 700ms var(--smooth) infinite}
+@keyframes flame-flicker{0%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.05)}100%{transform:translateY(0) scaleY(1)}}
+
+.candle.extinguished .flame{opacity:0;transform:scaleY(.3);transition:opacity .6s, transform .6s}
+
+.birthday-controls{margin-top:1rem;display:flex;gap:.75rem;align-items:center;justify-content:center;flex-wrap:wrap}
+.hint{color:var(--muted);font-size:.95rem}
+
+.confetti-canvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:60}
+
+@media (max-width:560px){
+  .cake__layer{width:180px}
+  .cake__layer--middle{width:210px}
+  .cake__layer--bottom{width:240px}
+  .candles{gap:6px}
+}
+
+.fade-out{opacity:0;transform:translateY(8px)}
+.fade-in{opacity:1;transform:translateY(0);transition:opacity .45s var(--smooth), transform .45s var(--smooth)}
+
+/* small heart floating animation for romantic feel */
+.heart{
+  position:fixed;
+  pointer-events:none;
+  width:18px;height:18px;background:transparent;z-index:50;
+}
+.heart svg{filter:drop-shadow(0 6px 14px rgba(200,90,120,0.12))}
