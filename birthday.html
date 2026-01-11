@@ -1,49 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday — Just for You</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Birthday Cake — Sonam</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="page page--birthday">
-  <nav class="nav">
-    <a href="index.html" class="nav__brand">For You</a>
-    <ul class="nav__links">
-      <li><a href="index.html#hero">Home</a></li>
-      <li><a href="index.html#gallery">Moments</a></li>
-      <li><a href="birthday.html" class="active cta">Birthday</a></li>
-    </ul>
-  </nav>
+<body>
+  <main class="birthday-page">
+    <h1>Make a wish for Sonam!</h1>
 
-  <main id="content" class="container birthday-container">
-    <section class="birthday-stage">
-      <h1 class="birthday-title">Happy Birthday, my love!</h1>
-      <p class="birthday-sub">Tap the cake, blow gently into the mic, or press the button to make a wish.</p>
+    <section class="cake-scene">
+      <div id="cake" class="cake" title="Click to blow candles">
+        <div class="cake-layer layer-top">
+          <div class="frosting"></div>
+        </div>
+        <div class="cake-layer layer-middle"></div>
+        <div class="cake-layer layer-bottom"></div>
 
-      <div id="cake" class="cake" role="button" tabindex="0" aria-label="Romantic birthday cake — tap or blow to extinguish candles">
-        <div class="cake__layer cake__layer--top"></div>
-        <div class="cake__layer cake__layer--middle"></div>
-        <div class="cake__layer cake__layer--bottom"></div>
-
-        <div id="candles" class="candles">
-          <noscript>Enable JavaScript to see animated candles.</noscript>
+        <div class="candles" id="candles">
+          <!-- 5 candles -->
+          <div class="candle" data-index="0"><div class="wick"></div><div class="flame" data-on="true"></div></div>
+          <div class="candle" data-index="1"><div class="wick"></div><div class="flame" data-on="true"></div></div>
+          <div class="candle" data-index="2"><div class="wick"></div><div class="flame" data-on="true"></div></div>
+          <div class="candle" data-index="3"><div class="wick"></div><div class="flame" data-on="true"></div></div>
+          <div class="candle" data-index="4"><div class="wick"></div><div class="flame" data-on="true"></div></div>
         </div>
       </div>
 
-      <div class="birthday-controls">
-        <button id="playBtn" class="btn">Play Birthday (if sound is blocked)</button>
-        <span class="hint">Or blow into your mic / tap the cake to blow the candles for a wish 💫</span>
+      <div class="controls">
+        <button id="blowBtn" class="btn">Blow Candles</button>
+        <button id="resetBtn" class="btn secondary">Reset</button>
       </div>
-
-      <canvas id="confetti" class="confetti-canvas" aria-hidden="true"></canvas>
     </section>
+
+    <canvas id="particlesCanvas" class="particles"></canvas>
+
+    <p class="note">Tip: Press "Blow Candles" or click the cake to start the melody and confetti. Reset will relight candles and restart effects.</p>
   </main>
 
-  <footer class="site-footer">
-    <p>With love ❤️</p>
-  </footer>
-
-  <script src="assets/script.js" defer></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
