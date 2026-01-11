@@ -101,3 +101,11 @@ section[data-section]{margin:3rem 0;padding:3rem 1rem;border-radius:12px}
   .hero__title{font-size:clamp(1.6rem,6vw,2.2rem)}
   .hero__lead{font-size:.95rem}
 }
+
+/* --- APPENDED: HERO BACKGROUND GRID --- */
+/* Hero background grid (full-bleed behind hero content) */
+.hero{position:relative;overflow:visible}
+.hero > *{position:relative;z-index:1}
+.hero-bg-grid{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100vw;height:100%;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:0;z-index:0;pointer-events:none}
+.hero-bg-grid .grid-item{background-size:cover;background-position:center;background-repeat:no-repeat;filter:saturate(0.98) brightness(0.92);min-height:220px}
+@media (max-width:900px){.hero-bg-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}}
