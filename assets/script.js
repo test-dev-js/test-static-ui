@@ -58,15 +58,19 @@
     });
   }
 
-  /* BIRTHDAY: SVG cake interactions + audio + continuous confetti + reset + mic detection */
+  /* BIRTHDAY: Image-based cake interactions + audio + continuous confetti + reset */
   function setupBirthday() {
-    const cakeSvg = document.getElementById('cake-svg');
+    // Try both standalone page and index.html section
+    const cakeImage = document.getElementById('cake-image') || document.getElementById('cake-image-index');
     const confettiCanvas = document.getElementById('confetti');
     const playBtn = document.getElementById('playBtn');
     const resetBtn = document.getElementById('resetBtn');
-    if (!cakeSvg || !confettiCanvas) return;
-
-    const flames = Array.from(cakeSvg.querySelectorAll('.flame'));
+    const birthdayMessage = document.getElementById('birthday-message');
+    const flameOverlay = document.getElementById('flame-overlay');
+    let birthdaySong = document.getElementById('birthday-song') || document.getElementById('birthday-song-index');
+    
+    if (!cakeImage || !confettiCanvas) return;
+    
     let candlesLit = true;
     let audioCtx = null;
     let confettiRunning = false;
@@ -178,16 +182,55 @@
     function extinguish() {
       if (!candlesLit) return;
       candlesLit = false;
-      flames.forEach(f => f.classList.add('extinguished'));
-      playHappy();
-      startConfetti(); // continuous until reset
+      
+      // Change cake image to candles off and hide flames
+      cakeImage.src = 'assets/Candle2.JPG';
+      if (flameOverlay) flameOverlay.style.display = 'none';
+      
+      startConfetti();
+      
+      // Hide subtitle and show birthday message
+      const subtitle = document.getElementById('birthday-subtitle');
+      if (subtitle) subtitle.style.opacity = '0';
+      
+      if (birthdayMessage) {
+        setTimeout(() => {
+          birthdayMessage.style.opacity = '1';
+          birthdayMessage.style.transform = 'translateY(0)';
+        }, 300);
+      }
+      
+      // Play the birthday song
+      if (birthdaySong) {
+        birthdaySong.currentTime = 0;
+        birthdaySong.volume = 1.0;
+        birthdaySong.play().catch(err => console.log('Audio play failed:', err));
+      }
     }
 
     function relight() {
-      flames.forEach(f => f.classList.remove('extinguished'));
+      // Change cake image back to candles on and show flames
+      cakeImage.src = 'assets/Candle1.JPG';
+      if (flameOverlay) flameOverlay.style.display = 'block';
+      
       candlesLit = true;
       stopConfetti();
       if (audioCtx && audioCtx.close) { try{ audioCtx.close(); } catch(e){} audioCtx = null; }
+      
+      // Show subtitle and hide birthday message
+      const subtitle = document.getElementById('birthday-subtitle');
+      if (subtitle) subtitle.style.opacity = '1';
+      
+      if (birthdayMessage) {
+        birthdayMessage.style.opacity = '0';
+        birthdayMessage.style.transform = 'translateY(-50px)';
+      }
+      
+      // Stop the birthday song
+      if (birthdaySong) {
+        birthdaySong.pause();
+        birthdaySong.currentTime = 0;
+      }
     }
 
     // mic detection (simple energy threshold)
@@ -214,10 +257,9 @@
     }
 
     // wiring
-    // make SVG respond to clicks and keyboard
-    const svgWrap = document.getElementById('svg-cake-wrap');
-    svgWrap && svgWrap.addEventListener('click', (e)=>{ e.preventDefault(); extinguish(); });
-    svgWrap && svgWrap.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); extinguish(); } });
+    // Make cake image respond to clicks and keyboard
+    cakeImage && cakeImage.addEventListener('click', (e)=>{ e.preventDefault(); extinguish(); });
+    cakeImage && cakeImage.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); extinguish(); } });
 
     playBtn && playBtn.addEventListener('click', ()=>{ try{ ensureAudio(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); } catch(e){} extinguish(); });
     resetBtn && resetBtn.addEventListener('click', (e)=>{ e.preventDefault(); relight(); });

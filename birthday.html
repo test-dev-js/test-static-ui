@@ -18,110 +18,25 @@
 
   <main id="content" class="container birthday-container">
     <section class="birthday-stage">
-      <h1 class="birthday-title">Happy Birthday, my love!</h1>
-      <p class="birthday-sub">Tap the cake, blow gently into the mic, or press the button to make a wish. Use Reset to relight.</p>
+      <h1 class="birthday-title" id="birthday-message" style="opacity: 0; transform: translateY(-50px); transition: all 1s ease-out;">Happy Birthday Love 🥰❤️</h1>
+      <p class="birthday-sub" id="birthday-subtitle" style="transition: opacity 0.5s ease-out;">Time to blow the candles...simply tap the cake 😊</p>
 
       <div class="birthday-scene">
-        <!-- Inline SVG cake (candles' flames have class 'flame') -->
-        <div id="svg-cake-wrap" class="svg-cake-wrap">
-          <svg id="cake-svg" width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birthday cake">
-            <defs>
-              <filter id="f-drop" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#e6a1b8" flood-opacity="0.12"/>
-              </filter>
-            </defs>
-
-            <!-- Plate -->
-            <ellipse cx="210" cy="280" rx="170" ry="18" fill="#fff5f9" />
-
-            <!-- Bottom layer -->
-            <rect x="30" y="160" rx="22" ry="22" width="360" height="80" fill="#ffd1e6" filter="url(#f-drop)" />
-            <!-- Middle layer -->
-            <rect x="60" y="120" rx="18" ry="18" width="300" height="64" fill="#fff0f6" />
-            <!-- Top layer -->
-            <rect x="90" y="88" rx="14" ry="14" width="240" height="44" fill="#fff7fb" />
-
-            <!-- Sprinkles (simple circles) -->
-            <g id="sprinkles" fill="#ff9bb3" opacity="0.95">
-              <circle cx="140" cy="130" r="4" />
-              <circle cx="180" cy="110" r="3.5" fill="#ffd1e6" />
-              <circle cx="220" cy="125" r="3" fill="#ffb8d0" />
-              <circle cx="260" cy="105" r="4" fill="#ffc1d9" />
-            </g>
-
-            <!-- Candles group: position them across the top layer -->
-            <g id="candles-group" transform="translate(0,70)">
-              <!-- create 7 candles evenly spaced -->
-              <g transform="translate(50,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-              <g transform="translate(100,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-              <g transform="translate(150,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-              <g transform="translate(200,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-              <g transform="translate(250,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-              <g transform="translate(300,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-              <g transform="translate(350,0)">
-                <rect x="0" y="0" width="12" height="36" rx="2" fill="#fff" />
-                <rect x="-2" y="36" width="16" height="6" rx="3" fill="#ffeef2" />
-                <g class="flame" transform="translate(6,-6)">
-                  <path d="M0 0 C3 -6, 9 -6, 12 0 C9 -2, 6 6, 0 0Z" fill="#ffd86b"/>
-                </g>
-              </g>
-
-            </g>
-
-          </svg>
-        </div>
-
+        <img 
+          id="cake-image" 
+          src="assets/Candle1.JPG" 
+          alt="Birthday cake with candles" 
+          style="max-width: 100%; height: auto; cursor: pointer; border-radius: 12px; box-shadow: 0 8px 24px rgba(230, 161, 184, 0.3); background: linear-gradient(135deg, #fff5f9 0%, #ffeef6 100%);"
+        />
       </div>
 
       <div class="birthday-controls">
         <button id="playBtn" class="btn">Play Birthday</button>
         <button id="resetBtn" class="btn btn--muted">Reset Candles</button>
-        <span class="hint">Or blow into your mic / tap the cake to blow the candles for a wish 💫</span>
       </div>
 
       <canvas id="confetti" class="confetti-canvas" aria-hidden="true"></canvas>
+      <audio id="birthday-song" preload="auto" src="assets/HBD.mp4"></audio>
     </section>
   </main>
 
@@ -129,6 +44,132 @@
     <p>With love ❤️</p>
   </footer>
 
-  <script src="assets/script.js" defer></script>
+  <script>
+    let candlesLit = true;
+    let confettiRunning = false;
+    
+    const cakeImage = document.getElementById('cake-image');
+    const birthdayMessage = document.getElementById('birthday-message');
+    const birthdaySong = document.getElementById('birthday-song');
+    const confettiCanvas = document.getElementById('confetti');
+    const playBtn = document.getElementById('playBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Confetti
+    function startConfetti() {
+      if (confettiRunning) return;
+      confettiRunning = true;
+      
+      const ctx = confettiCanvas.getContext('2d');
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      
+      const pieces = [];
+      const colors = ['#ff9bb3','#ffd1e6','#ffefef','#ffc1d9','#ff7aa2'];
+      
+      for (let i=0; i<100; i++){
+        pieces.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * -window.innerHeight,
+          size: 6 + Math.random() * 12,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: -1 + Math.random() * 2,
+          vy: 1 + Math.random() * 3,
+          rot: Math.random() * 360,
+          drot: -3 + Math.random() * 6
+        });
+      }
+      
+      function animate() {
+        if (!confettiRunning) return;
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        
+        pieces.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.drot;
+          
+          if (p.y > window.innerHeight + 20) {
+            p.y = -20;
+            p.x = Math.random() * window.innerWidth;
+          }
+          
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.fillStyle = p.color;
+          
+          const s = p.size;
+          ctx.beginPath();
+          ctx.moveTo(0, -s/2);
+          ctx.bezierCurveTo(s/2, -s, s, -s/4, 0, s/2);
+          ctx.bezierCurveTo(-s, -s/4, -s/2, -s, 0, -s/2);
+          ctx.fill();
+          ctx.restore();
+        });
+        
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    function stopConfetti() {
+      confettiRunning = false;
+      const ctx = confettiCanvas.getContext('2d');
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+
+    function blowCandles() {
+      if (!candlesLit) return;
+      candlesLit = false;
+      
+      // Change image
+      cakeImage.src = 'assets/Candle2.JPG';
+      
+      // Hide subtitle
+      const subtitle = document.getElementById('birthday-subtitle');
+      if (subtitle) subtitle.style.opacity = '0';
+      
+      // Show message
+      setTimeout(() => {
+        birthdayMessage.style.opacity = '1';
+        birthdayMessage.style.transform = 'translateY(0)';
+      }, 300);
+      
+      // Start confetti
+      startConfetti();
+      
+      // Play song
+      birthdaySong.currentTime = 0;
+      birthdaySong.play().catch(err => console.log('Audio play failed:', err));
+    }
+
+    function reset() {
+      candlesLit = true;
+      
+      // Change image back
+      cakeImage.src = 'assets/Candle1.JPG';
+      
+      // Show subtitle
+      const subtitle = document.getElementById('birthday-subtitle');
+      if (subtitle) subtitle.style.opacity = '1';
+      
+      // Hide message
+      birthdayMessage.style.opacity = '0';
+      birthdayMessage.style.transform = 'translateY(-50px)';
+      
+      // Stop confetti
+      stopConfetti();
+      
+      // Stop song
+      birthdaySong.pause();
+      birthdaySong.currentTime = 0;
+    }
+
+    // Event listeners
+    cakeImage.addEventListener('click', blowCandles);
+    playBtn.addEventListener('click', blowCandles);
+    resetBtn.addEventListener('click', reset);
+  </script>
 </body>
 </html>

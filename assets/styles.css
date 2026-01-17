@@ -2,6 +2,7 @@
   --bg:#fff0f6;
   --card:#fff6fb;
   --accent:#ff6b9a;
+  --accent2:#9d0032;
   --muted:#8b6f7a;
   --white:#ffffff;
   --glass: rgba(255,255,255,0.6);
@@ -53,20 +54,20 @@ section[data-section]{margin:3rem 0;padding:3rem 1rem;border-radius:12px}
   background-size: 28% 28%, 28% 28%, 28% 28%, 28% 28%;
   background-attachment: fixed;
   mix-blend-mode: normal;
-  z-index:0;
+  z-index:-1;
 }
 .hero--full::after{
   /* semi-transparent pink faded layer overlay */
-  content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,245,249,0.6), rgba(255,230,240,0.65));backdrop-filter: blur(2px);z-index:1;
+  content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(253, 239, 245, 0.6), rgba(246, 188, 211, 0.65));backdrop-filter: blur(1px);z-index:0;
 }
 
 /* content sits above overlay */
 .hero__inner{position:relative;z-index:2;text-align:center;padding:6rem 1rem;max-width:880px}
-.hero__title{font-size:clamp(1.8rem,5vw,3.4rem);margin:0 0 .65rem;color:var(--accent)}
-.hero__lead{color:var(--muted);margin-top:.6rem}
+.hero__title{font-size:clamp(1.8rem,5vw,3.4rem);margin:0 0 .65rem;color:var(--accent2)}
+.hero__lead{color:var(--accent2);margin-top:.6rem}
 
 /* typewriter */
-.typewriter-line{font-size:clamp(1rem,3vw,1.25rem);color:#703049;margin:.25rem 0;display:inline-block}
+.typewriter-line{font-size:clamp(1.2rem,3vw,1.25rem);color:var(rgb(0,0,0,0));margin:.25rem 0;display:inline-block}
 .caret{margin-left:6px;animation:blink 1s steps(2,start) infinite}
 @keyframes blink{50%{opacity:0}}
 
