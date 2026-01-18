@@ -38,7 +38,8 @@
 
 html {
   scroll-behavior: smooth;
-  overflow: hidden;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* ==========================================
@@ -51,10 +52,10 @@ body {
     radial-gradient(ellipse at top, #3d1a2e 0%, #2a1420 50%, #1f0e18 100%);
   color: var(--pearl);
   line-height: 1.8;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  max-width: 100vw;
 }
 
 /* Subtle Romantic Heart Pattern Background */
@@ -127,29 +128,18 @@ body::after {
 
 .page-container {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 .page {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: none;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.95);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
+  min-height: 100vh;
+  padding: 2rem 1rem;
 }
 
 .page.active {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  z-index: 10;
+  display: block;
 }
 
 /* Custom Scrollbar - Romantic */
@@ -460,7 +450,7 @@ body::after {
 
 .gift-wrapper {
   width: 100%;
-  height: 100%;
+  height: 75%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -631,7 +621,7 @@ body::after {
   width: 100%;
   max-width: 280px;
   height: 200px;
-  margin: 1rem auto;
+  margin: 2rem auto;
   cursor: pointer;
   transition: all 0.4s ease;
 }
@@ -642,7 +632,7 @@ body::after {
 
 .envelope {
   width: 100%;
-  height: 100%;
+  height: 75%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -832,11 +822,11 @@ body::after {
 
 .gallery-item {
   min-width: 100%;
-  flex-shrink: 0;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2%;
+  padding: 0% 0%;
   transition: all 0.6s ease;
 }
 
@@ -1099,6 +1089,7 @@ body::after {
   font-family: 'Montserrat', sans-serif;
   position: relative;
   overflow: hidden;
+  margin-top: 3rem;
 }
 
 .nav-button::before {
@@ -1148,56 +1139,284 @@ body::after {
 }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE - COMPREHENSIVE MEDIA QUERIES
    ========================================== */
 
+/* Tablets and iPads (768px - 1024px) */
+@media (max-width: 1024px) {
+  .shayari-container,
+  .letter-container,
+  .gallery-container,
+  .birthday-container {
+    padding: 1.5rem;
+  }
+  
+  .page-header {
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .gallery-slider {
+    max-width: 650px;
+  }
+  
+  .cake-image {
+    max-height: 350px;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (481px - 768px) */
 @media (max-width: 768px) {
+  .page {
+    padding: 1.5rem 1rem;
+  }
+  
   .hero-content {
-    padding: 4rem 2rem;
+    padding: 2.5rem 1.5rem;
+    max-width: 90%;
+  }
+  
+  .hero-greeting {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .greeting-sparkle {
+    font-size: 2.5rem;
+  }
+  
+  .typewriter-container {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+  }
+  
+  .hero-subtitle {
+    margin: 1rem 0;
+  }
+  
+  .hero-actions {
+    margin-top: 1.5rem;
   }
   
   .btn-primary {
-    width: 90%;
-    max-width: 400px;
-    justify-content: center;
+    width: 100%;
+    max-width: 350px;
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+  }
+  
+  .page-header {
+    padding: 1.5rem 1rem;
   }
   
   .gift-box,
   .envelope-wrapper {
-    max-width: 350px;
-    height: 300px;
+    max-width: 200px;
+    height: 200px;
   }
   
-  .gallery-nav {
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
+  .gift-box svg {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .envelope svg {
+    width: 180px;
+    height: 120px;
+  }
+  
+  /* Modal responsive */
+  .shayari-content {
+    padding: 3rem 2rem;
+    max-width: 90%;
+  }
+  
+  .letter-modal {
+    padding: 1rem;
+  }
+  
+  .letter-paper {
+    padding: 3rem 2rem;
+    max-width: 90%;
+  }
+  
+  .gallery-slider {
+    max-width: 550px;
+  }
+  
+  .gallery-item {
+    padding: 0 1%;
+  }
+  
+  .cake-image {
+    max-height: 300px;
+  }
+  
+  .birthday-instruction {
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+  }
+  
+  .birthday-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .btn-birthday,
+  .btn-birthday-secondary {
+    width: 90%;
+    max-width: 350px;
+    justify-content: center;
   }
   
   .page-navigation {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
   }
   
   .nav-button {
     width: 90%;
-    max-width: 400px;
+    max-width: 350px;
     justify-content: center;
   }
 }
 
+/* Mobile Portrait (320px - 480px) */
 @media (max-width: 480px) {
+  .page {
+    padding: 1rem 0.8rem;
+  }
+  
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+  
   .hero-content {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.2rem;
+  }
+  
+  .hero-greeting {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .greeting-sparkle {
+    font-size: 2rem;
+  }
+  
+  .typewriter-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    min-height: 60px;
   }
   
   .page-header {
-    padding: 2.5rem 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
   }
   
-  .shayari-content,
+  .page-subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+  
+  .gift-label,
+  .envelope-label {
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .gallery-slider {
+    max-width: 100%;
+  }
+  
+  .gallery-item {
+    padding: 0 0%;
+  }
+  
+  .gallery-indicators {
+    margin-top: 1rem;
+    gap: 0.6rem;
+  }
+  
+  .gallery-indicator {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .cake-image {
+    max-height: 250px;
+  }
+  
+  .birthday-instruction {
+    padding: 1rem;
+    margin: 1rem auto;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+  }
+  
+  .btn-birthday,
+  .btn-birthday-secondary {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .nav-button {
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Modals on mobile */
+  .shayari-modal,
+  .letter-modal {
+    padding: 1rem;
+  }
+  
+  .shayari-content {
+    padding: 2rem 1.2rem;
+    max-width: 95%;
+    transform: scale(0.9);
+  }
+  
+  .shayari-modal.active .shayari-content {
+    transform: scale(1);
+  }
+  
   .letter-paper {
-    padding: 3.5rem 2rem;
+    padding: 2rem 1.2rem;
+    max-width: 95%;
+    max-height: 90vh;
+  }
+  
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .hindi-text {
+    margin: 1.2rem 0;
+    line-height: 2;
+  }
+  
+  .shayari-divider {
+    margin: 1.2rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .english-text {
+    margin: 1.2rem 0;
+    line-height: 2;
+  }
+  
+  .letter-text p {
+    margin-bottom: 1.2rem;
+  }
+  
+  .letter-signature {
+    margin-top: 2rem;
   }
 }
 

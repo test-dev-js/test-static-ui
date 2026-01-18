@@ -355,9 +355,9 @@
       const slideWidth = track.offsetWidth;
       
       if (deltaX < -50) {
-        currentSlide = Math.min(currentSlide + 1, galleryItems.length - 1);
+        currentSlide = (currentSlide + 1) % galleryItems.length;
       } else if (deltaX > 50) {
-        currentSlide = Math.max(currentSlide - 1, 0);
+        currentSlide = (currentSlide - 1 + galleryItems.length) % galleryItems.length;
       }
       
       track.style.transition = 'transform 0.6s ease';
@@ -384,9 +384,9 @@
       const deltaX = touchEndX - touchStartX;
       
       if (deltaX < -50) {
-        currentSlide = Math.min(currentSlide + 1, galleryItems.length - 1);
+        currentSlide = (currentSlide + 1) % galleryItems.length;
       } else if (deltaX > 50) {
-        currentSlide = Math.max(currentSlide - 1, 0);
+        currentSlide = (currentSlide - 1 + galleryItems.length) % galleryItems.length;
       }
       
       track.style.transition = 'transform 0.6s ease';
