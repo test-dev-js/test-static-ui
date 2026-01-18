@@ -6,7 +6,7 @@
   <title>For You, Miss Sharma ✨</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -16,24 +16,6 @@
   
   <!-- Floating hearts decoration -->
   <div class="floating-hearts" aria-hidden="true"></div>
-  
-  <!-- Elegant Navigation -->
-  <nav class="luxury-nav" id="mainNav">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo">
-        <span class="logo-icon">✨</span>
-        <span class="logo-text">For You</span>
-      </a>
-      <ul class="nav-menu">
-        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
-        <li><a href="#journey" class="nav-link" data-page="journey">Our Journey</a></li>
-        <li><a href="#memories" class="nav-link" data-page="memories">Memories</a></li>
-        <li><a href="#birthday" class="nav-link nav-link--special" data-page="birthday">
-          <span class="sparkle">✨</span> Birthday <span class="sparkle">✨</span>
-        </a></li>
-      </ul>
-    </div>
-  </nav>
 
   <!-- Page Container -->
   <main class="page-container">
@@ -41,11 +23,7 @@
     <!-- HOME PAGE -->
     <section id="home" class="page active" data-page="home">
       <div class="hero-section">
-        <!-- Animated background gradient -->
         <div class="gradient-bg"></div>
-        
-        <!-- Elegant geometric patterns -->
-        <div class="geometric-pattern"></div>
         
         <div class="hero-content">
           <div class="hero-greeting">
@@ -65,111 +43,267 @@
           </p>
           
           <div class="hero-actions">
-            <a href="#birthday" class="btn-primary" data-page="birthday">
-              <span class="btn-icon">🎂</span>
-              <span>Open Birthday Surprise</span>
-              <span class="btn-shine"></span>
-            </a>
-            <a href="#journey" class="btn-secondary" data-page="journey">
-              <span>Explore Our Story</span>
-            </a>
+            <button class="btn-primary btn-primary--special" data-page="shayari" id="beginJourneyBtn">
+              <span class="btn-icon">✨</span>
+              <span>Begin Our Journey</span>
+            </button>
           </div>
-        </div>
-        
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-          <span class="scroll-text">Scroll to explore</span>
-          <div class="scroll-arrow"></div>
         </div>
       </div>
     </section>
 
-    <!-- JOURNEY PAGE -->
-    <section id="journey" class="page" data-page="journey">
-      <div class="page-content">
+    <!-- SHAYARI PAGE -->
+    <section id="shayari" class="page" data-page="shayari">
+      <div class="shayari-container">
         <div class="page-header">
-          <span class="page-subtitle">Our Beautiful</span>
-          <h2 class="page-title">Journey Together</h2>
+          <span class="page-subtitle">Special for You</span>
+          <h2 class="page-title">A Gift of Words</h2>
           <div class="title-underline"></div>
         </div>
         
-        <div class="journey-timeline">
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-icon">💫</div>
-            <div class="timeline-content">
-              <h3>The Beginning</h3>
-              <p>Where our paths crossed and something magical began to unfold...</p>
-            </div>
+        <div class="gift-box" id="giftBox">
+          <div class="gift-wrapper">
+            <svg class="gift-animated" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="giftGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FF1493;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                  <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="bowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              
+              <!-- Gift Box Body -->
+              <rect class="gift-box-body" x="50" y="80" width="100" height="80" rx="5" />
+              
+              <!-- Vertical Ribbon -->
+              <rect class="gift-ribbon" x="92" y="75" width="16" height="90" />
+              
+              <!-- Horizontal Ribbon -->
+              <rect class="gift-ribbon" x="45" y="115" width="110" height="16" />
+              
+              <!-- Bow -->
+              <g class="gift-bow-element" id="giftBow">
+                <!-- Left bow loop -->
+                <ellipse cx="80" cy="75" rx="20" ry="15" />
+                <!-- Right bow loop -->
+                <ellipse cx="120" cy="75" rx="20" ry="15" />
+                <!-- Center knot -->
+                <circle cx="100" cy="75" r="8" />
+                <!-- Ribbon tails -->
+                <path d="M 90 83 L 85 95 L 80 105" stroke="#FFD700" stroke-width="4" fill="none" />
+                <path d="M 110 83 L 115 95 L 120 105" stroke="#FFD700" stroke-width="4" fill="none" />
+              </g>
+              
+              <!-- Sparkles -->
+              <circle class="gift-sparkle" cx="40" cy="70" r="3" />
+              <circle class="gift-sparkle" cx="160" cy="85" r="2" />
+              <circle class="gift-sparkle" cx="45" cy="150" r="2.5" />
+              <circle class="gift-sparkle" cx="155" cy="140" r="3" />
+            </svg>
           </div>
-          
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-icon">💝</div>
-            <div class="timeline-content">
-              <h3>Growing Together</h3>
-              <p>Every moment spent together, building memories that last forever...</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-icon">🌟</div>
-            <div class="timeline-content">
-              <h3>Today & Beyond</h3>
-              <p>Celebrating you, celebrating us, and all the adventures ahead...</p>
-            </div>
-          </div>
+          <p class="gift-label">Click the bow to unwrap your gift</p>
         </div>
         
-        <div class="journey-quote">
-          <p>"In your smile, I found my home. In your eyes, I found my dreams."</p>
+        <div class="page-navigation">
+          <button class="nav-button" data-page="letter">
+            <span>Next: Love Letter</span>
+            <span>💌</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- MEMORIES PAGE -->
-    <section id="memories" class="page" data-page="memories">
-      <div class="page-content">
+    <!-- SHAYARI MODAL -->
+    <div class="shayari-modal" id="shayariModal">
+      <div class="shayari-content">
+        <button class="modal-close" id="shayariClose">×</button>
+        <div class="shayari-text">
+          <div class="shayari-verse">
+            <p class="hindi-text">तुम्हारी मुस्कान में छुपी है मेरी दुनिया,<br>
+            तुम्हारी बातों में बसी है मेरी खुशी।<br>
+            हर लम्हा तुम्हारे साथ एक सपना है,<br>
+            तुम हो तो ज़िंदगी में है रोशनी।</p>
+          </div>
+          <div class="shayari-divider">✦</div>
+          <div class="shayari-verse">
+            <p class="english-text">Your smile holds my entire world,<br>
+            Your words carry all my joy.<br>
+            Every moment with you feels like a dream,<br>
+            With you, life is filled with light.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOVE LETTER PAGE -->
+    <section id="letter" class="page" data-page="letter">
+      <div class="letter-container">
         <div class="page-header">
-          <span class="page-subtitle">Cherished</span>
-          <h2 class="page-title">Moments Together</h2>
+          <span class="page-subtitle">From My Heart</span>
+          <h2 class="page-title">A Letter for You</h2>
           <div class="title-underline"></div>
         </div>
         
-        <div class="memories-grid">
-          <div class="memory-card" data-aos="zoom-in">
-            <div class="memory-icon">💌</div>
-            <h3>Love Letters</h3>
-            <p>Words that touched the heart and soul</p>
+        <div class="envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope" id="envelope">
+            <svg class="envelope-animated" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="envelopeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FFE4E1;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FFC0CB;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="flapGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FFC0CB;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FFB6C1;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FF1493;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              
+              <!-- Envelope Body -->
+              <rect class="envelope-body-svg" x="50" y="60" width="200" height="120" rx="5" />
+              
+              <!-- Envelope Flap -->
+              <path class="envelope-flap-svg" d="M 50 60 L 150 130 L 250 60 Z" />
+              
+              <!-- Envelope Bottom Flaps -->
+              <path class="envelope-body-svg" d="M 50 180 L 150 110 L 250 180 Z" />
+              
+              <!-- Heart Seal -->
+              <g class="envelope-heart">
+                <path d="M 150 95 c-8-16 -24-16 -24 0 c0 16 24 32 24 32 s24-16 24-32 c0-16 -16-16 -24 0 z" />
+              </g>
+              
+              <!-- Decorative Lines -->
+              <line x1="70" y1="90" x2="130" y2="90" stroke="#FF69B4" stroke-width="1.5" opacity="0.6" />
+              <line x1="70" y1="100" x2="130" y2="100" stroke="#FF69B4" stroke-width="1.5" opacity="0.6" />
+              <line x1="170" y1="90" x2="230" y2="90" stroke="#FF69B4" stroke-width="1.5" opacity="0.6" />
+              <line x1="170" y1="100" x2="230" y2="100" stroke="#FF69B4" stroke-width="1.5" opacity="0.6" />
+              
+              <!-- Sparkles -->
+              <circle class="envelope-sparkles" cx="60" cy="70" r="2" />
+              <circle class="envelope-sparkles" cx="240" cy="80" r="2.5" />
+              <circle class="envelope-sparkles" cx="55" cy="160" r="2" />
+              <circle class="envelope-sparkles" cx="245" cy="170" r="2.5" />
+            </svg>
           </div>
+          <p class="envelope-label">Click the envelope to open</p>
+        </div>
+        
+        <div class="page-navigation">
+          <button class="nav-button" data-page="gallery">
+            <span>Next: Our Gallery</span>
+            <span>📸</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LETTER MODAL -->
+    <div class="letter-modal" id="letterModal">
+      <div class="letter-paper">
+        <button class="modal-close" id="letterClose">×</button>
+        <div class="letter-text">
+          <p class="letter-greeting">My Dearest Miss Sharma,</p>
           
-          <div class="memory-card" data-aos="zoom-in" data-aos-delay="100">
-            <div class="memory-icon">🌹</div>
-            <h3>Little Gestures</h3>
-            <p>Every rose, every smile, every moment</p>
-          </div>
+          <p>There are moments in life that leave an indelible mark on our hearts, and meeting you was one of those beautiful moments for me. Every day with you has been a treasure, every smile you share brings warmth to my soul.</p>
           
-          <div class="memory-card" data-aos="zoom-in" data-aos-delay="200">
-            <div class="memory-icon">✨</div>
-            <h3>Magic Moments</h3>
-            <p>Times when everything felt just perfect</p>
-          </div>
+          <p>You are my inspiration, my joy, and my peace. Your kindness touches everyone around you, and your strength amazes me every single day. When I look at you, I see not just beauty, but grace, wisdom, and a heart full of love.</p>
           
-          <div class="memory-card" data-aos="zoom-in" data-aos-delay="300">
-            <div class="memory-icon">🎭</div>
-            <h3>Adventures</h3>
-            <p>Stories we created, journeys we shared</p>
-          </div>
+          <p>Thank you for being you - for your laughter that fills my days with sunshine, for your understanding that brings me comfort, and for your love that makes everything worthwhile.</p>
           
-          <div class="memory-card" data-aos="zoom-in" data-aos-delay="400">
-            <div class="memory-icon">🌙</div>
-            <h3>Quiet Nights</h3>
-            <p>Peaceful moments, deep conversations</p>
-          </div>
+          <p>On this special day, I want you to know that you are cherished beyond words, loved beyond measure, and celebrated for the incredible person you are.</p>
           
-          <div class="memory-card" data-aos="zoom-in" data-aos-delay="500">
-            <div class="memory-icon">💫</div>
-            <h3>Dreams Together</h3>
-            <p>Building castles in the air, together</p>
+          <p class="letter-closing">Happy Birthday, my love. Here's to many more beautiful moments together.</p>
+          
+          <div class="letter-signature">Forever yours,<br><span class="signature-name">Your Sweet Potato</span> 💕</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <section id="gallery" class="page" data-page="gallery">
+      <div class="gallery-container">
+        <div class="page-header">
+          <span class="page-subtitle">Treasured</span>
+          <h2 class="page-title">Our Precious Moments</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="gallery-slider">
+          <button class="gallery-nav gallery-nav-prev" id="galleryPrev" aria-label="Previous image">‹</button>
+          <button class="gallery-nav gallery-nav-next" id="galleryNext" aria-label="Next image">›</button>
+          
+          <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-item active">
+              <div class="gallery-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&h=450&fit=crop" alt="Beautiful moment" class="gallery-image">
+              </div>
+              <div class="memory-description">
+                <h3>A Moment in Time</h3>
+                <p>This memory captures a special moment that will forever be etched in my heart</p>
+              </div>
+            </div>
+            
+            <div class="gallery-item">
+              <div class="gallery-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&h=450&fit=crop" alt="Joyful memories" class="gallery-image">
+              </div>
+              <div class="memory-description">
+                <h3>Pure Joy</h3>
+                <p>Your laughter and smile that brightens my entire world every single day</p>
+              </div>
+            </div>
+            
+            <div class="gallery-item">
+              <div class="gallery-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&h=450&fit=crop" alt="Romantic evening" class="gallery-image">
+              </div>
+              <div class="memory-description">
+                <h3>Evening Magic</h3>
+                <p>Those peaceful evenings when the world fades away and it's just us</p>
+              </div>
+            </div>
+            
+            <div class="gallery-item">
+              <div class="gallery-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=450&fit=crop" alt="Celebration" class="gallery-image">
+              </div>
+              <div class="memory-description">
+                <h3>Celebrations Together</h3>
+                <p>Every celebration becomes more special because you're by my side</p>
+              </div>
+            </div>
+            
+            <div class="gallery-item">
+              <div class="gallery-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=600&h=450&fit=crop" alt="Quiet moments" class="gallery-image">
+              </div>
+              <div class="memory-description">
+                <h3>Quiet Moments</h3>
+                <p>Finding peace and comfort in your presence, in the simplest of moments</p>
+              </div>
+            </div>
           </div>
+        </div>
+        
+        <div class="gallery-indicators" id="galleryIndicators"></div>
+        
+        <div class="page-navigation">
+          <button class="nav-button" data-page="birthday">
+            <span>Next: Birthday</span>
+            <span>🎂</span>
+          </button>
         </div>
       </div>
     </section>
@@ -187,7 +321,6 @@
         </div>
         
         <div class="birthday-stage">
-          <!-- Cake container with magical effects -->
           <div class="cake-wrapper">
             <div class="cake-glow"></div>
             <div class="cake-sparkles"></div>
@@ -202,7 +335,6 @@
               aria-label="Click to blow out candles"
             />
             
-            <!-- Animated flame overlay -->
             <svg id="flame-overlay" class="flame-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <filter id="glow">
@@ -231,8 +363,15 @@
             <span>Play Birthday Song</span>
           </button>
           <button id="resetBtn" class="btn-birthday-secondary">
-            <span class="btn-icon">🔄</span>
+            <span class="btn-icon">�</span>
             <span>Reset Candles</span>
+          </button>
+        </div>
+        
+        <div class="page-navigation">
+          <button class="nav-button" data-page="home">
+            <span>🏠</span>
+            <span>Back to Home</span>
           </button>
         </div>
       </div>

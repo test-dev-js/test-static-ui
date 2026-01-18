@@ -1,44 +1,19 @@
 // ==========================================
 // LUXURY ROMANTIC WEBSITE - JAVASCRIPT
-// Multi-page navigation with preserved birthday features
+// Enhanced with Gallery, Shayari, and Letter Features
 // ==========================================
 
 (() => {
   'use strict';
 
   // ==========================================
-  // NAVIGATION & PAGE TRANSITIONS
+  // NAVIGATION & PAGE TRANSITIONS (GLOBAL SCOPE)
   // ==========================================
 
-  function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
+  // Make navigateToPage globally accessible
+  window.navigateToPage = function(pageId, updateHash = true) {
+    console.log('Navigating to:', pageId);
     const pages = document.querySelectorAll('.page');
-    
-    // Handle navigation clicks
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const targetPage = link.getAttribute('data-page');
-        if (targetPage) {
-          e.preventDefault();
-          navigateToPage(targetPage);
-        }
-      });
-    });
-
-    // Handle hash changes (back/forward buttons)
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.slice(1) || 'home';
-      navigateToPage(hash, false);
-    });
-
-    // Initial page load
-    const initialHash = window.location.hash.slice(1) || 'home';
-    navigateToPage(initialHash, false);
-  }
-
-  function navigateToPage(pageId, updateHash = true) {
-    const pages = document.querySelectorAll('.page');
-    const navLinks = document.querySelectorAll('.nav-link');
     
     // Update hash if needed
     if (updateHash) {
@@ -54,52 +29,52 @@
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
       targetPage.classList.add('active');
+      console.log('Page activated:', pageId);
       
       // Scroll to top smoothly
-      window.scrollTo({
+      targetPage.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
-    }
-    
-    // Update nav links
-    navLinks.forEach(link => {
-      if (link.getAttribute('data-page') === pageId) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
+      
+      // Trigger specific page initializations
+      if (pageId === 'gallery') {
+        initializeGallerySlider();
       }
+    } else {
+      console.error('Page not found:', pageId);
+    }
+  };
+
+  function initNavigation() {
+    const navButtons = document.querySelectorAll('[data-page]');
+    
+    // Handle navigation clicks
+    navButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const targetPage = button.getAttribute('data-page');
+        console.log('Button clicked, target:', targetPage);
+        if (targetPage) {
+          window.navigateToPage(targetPage);
+        }
+      });
     });
 
-    // Trigger animations for the new page
-    triggerPageAnimations(pageId);
-  }
+    // Handle hash changes (back/forward buttons)
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.slice(1) || 'home';
+      window.navigateToPage(hash, false);
+    });
 
-  function triggerPageAnimations(pageId) {
-    // Reset and retrigger animations for timeline and memory cards
-    if (pageId === 'journey') {
-      const timelineItems = document.querySelectorAll('.timeline-item');
-      timelineItems.forEach((item, index) => {
-        item.style.animation = 'none';
-        setTimeout(() => {
-          item.style.animation = '';
-        }, 10);
-      });
-    }
-    
-    if (pageId === 'memories') {
-      const memoryCards = document.querySelectorAll('.memory-card');
-      memoryCards.forEach((card, index) => {
-        card.style.animation = 'none';
-        setTimeout(() => {
-          card.style.animation = '';
-        }, 10);
-      });
-    }
+    // Initial page load
+    const initialHash = window.location.hash.slice(1) || 'home';
+    window.navigateToPage(initialHash, false);
   }
 
   // ==========================================
-  // TYPEWRITER EFFECT (PRESERVED)
+  // TYPEWRITER EFFECT
   // ==========================================
 
   function initTypewriter() {
@@ -153,32 +128,305 @@
   }
 
   // ==========================================
-  // FLOATING HEARTS ANIMATION
+  // ROMANTIC FLOATING HEARTS & SPARKLES
   // ==========================================
 
   function initFloatingHearts() {
     const container = document.querySelector('.floating-hearts');
     if (!container) return;
 
-    // Create additional floating hearts dynamically
-    for (let i = 0; i < 5; i++) {
+    // Create floating hearts
+    const heartEmojis = ['💕', '💖', '💗', '💝', '💓'];
+    for (let i = 0; i < 8; i++) {
       const heart = document.createElement('div');
       heart.className = 'floating-heart';
-      heart.innerHTML = '💕';
+      heart.innerHTML = heartEmojis[i % heartEmojis.length];
       heart.style.cssText = `
         position: absolute;
-        font-size: 20px;
+        font-size: ${18 + Math.random() * 12}px;
         opacity: 0;
-        animation: floatHeart 15s ease-in-out infinite;
-        animation-delay: ${i * 3}s;
+        animation: floatHeart ${12 + Math.random() * 8}s ease-in-out infinite;
+        animation-delay: ${i * 2}s;
         left: ${Math.random() * 100}%;
       `;
       container.appendChild(heart);
     }
+    
+    // Create sparkle elements
+    const particlesContainer = document.querySelector('.ambient-particles');
+    if (particlesContainer) {
+      for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.innerHTML = '✨';
+        sparkle.style.cssText = `
+          position: absolute;
+          font-size: ${10 + Math.random() * 8}px;
+          color: rgba(212, 175, 55, ${0.3 + Math.random() * 0.4});
+          top: ${Math.random() * 100}%;
+          left: ${Math.random() * 100}%;
+          animation: twinkle ${2 + Math.random() * 3}s ease-in-out infinite;
+          animation-delay: ${Math.random() * 3}s;
+        `;
+        particlesContainer.appendChild(sparkle);
+      }
+    }
+  }
+  
+  // Add twinkle animation dynamically
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ==========================================
+  // SHAYARI GIFT BOX UNWRAPPING
+  // ==========================================
+
+  function initShayariGift() {
+    const giftBow = document.getElementById('giftBow');
+    const giftBox = document.getElementById('giftBox');
+    const shayariModal = document.getElementById('shayariModal');
+    const shayariClose = document.getElementById('shayariClose');
+    
+    if (!giftBow || !giftBox || !shayariModal) return;
+
+    const openShayari = () => {
+      giftBox.classList.add('unwrapping');
+      
+      setTimeout(() => {
+        shayariModal.classList.add('active');
+      }, 800);
+    };
+
+    const closeShayari = () => {
+      shayariModal.classList.remove('active');
+      setTimeout(() => {
+        giftBox.classList.remove('unwrapping');
+      }, 500);
+    };
+
+    giftBow.addEventListener('click', openShayari);
+    giftBox.addEventListener('click', openShayari);
+    
+    if (shayariClose) {
+      shayariClose.addEventListener('click', closeShayari);
+    }
+    
+    shayariModal.addEventListener('click', (e) => {
+      if (e.target === shayariModal) {
+        closeShayari();
+      }
+    });
+    
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && shayariModal.classList.contains('active')) {
+        closeShayari();
+      }
+    });
   }
 
   // ==========================================
-  // BIRTHDAY FUNCTIONALITY (PRESERVED)
+  // LOVE LETTER ENVELOPE OPENING
+  // ==========================================
+
+  function initLoveLetterEnvelope() {
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const envelope = document.getElementById('envelope');
+    const letterModal = document.getElementById('letterModal');
+    const letterClose = document.getElementById('letterClose');
+    
+    if (!envelopeWrapper || !letterModal) return;
+
+    const openLetter = () => {
+      envelopeWrapper.classList.add('opening');
+      
+      setTimeout(() => {
+        letterModal.classList.add('active');
+      }, 1200);
+    };
+
+    const closeLetter = () => {
+      letterModal.classList.remove('active');
+      setTimeout(() => {
+        envelopeWrapper.classList.remove('opening');
+      }, 500);
+    };
+
+    envelopeWrapper.addEventListener('click', openLetter);
+    
+    if (letterClose) {
+      letterClose.addEventListener('click', closeLetter);
+    }
+    
+    letterModal.addEventListener('click', (e) => {
+      if (e.target === letterModal) {
+        closeLetter();
+      }
+    });
+    
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && letterModal.classList.contains('active')) {
+        closeLetter();
+      }
+    });
+  }
+
+  // ==========================================
+  // GALLERY 3D CAROUSEL
+  // ==========================================
+
+  let currentSlide = 0;
+  let galleryItems = [];
+  let galleryInitialized = false;
+
+  function initializeGallerySlider() {
+    if (galleryInitialized) return;
+    
+    const track = document.getElementById('galleryTrack');
+    const indicatorsContainer = document.getElementById('galleryIndicators');
+    
+    if (!track) return;
+
+    galleryItems = Array.from(track.querySelectorAll('.gallery-item'));
+    
+    if (galleryItems.length === 0) return;
+
+    // Create indicators
+    if (indicatorsContainer) {
+      indicatorsContainer.innerHTML = '';
+      galleryItems.forEach((_, index) => {
+        const indicator = document.createElement('div');
+        indicator.className = 'gallery-indicator';
+        if (index === 0) indicator.classList.add('active');
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+      });
+    }
+
+    // Set first slide as active
+    updateGallerySlide();
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const galleryPage = document.getElementById('gallery');
+      if (!galleryPage || !galleryPage.classList.contains('active')) return;
+      
+      if (e.key === 'ArrowLeft') {
+        currentSlide = (currentSlide - 1 + galleryItems.length) % galleryItems.length;
+        updateGallerySlide();
+      } else if (e.key === 'ArrowRight') {
+        currentSlide = (currentSlide + 1) % galleryItems.length;
+        updateGallerySlide();
+      }
+    });
+
+    // Drag and swipe support
+    let isDragging = false;
+    let startX = 0;
+    let startTranslate = 0;
+
+    // Mouse drag
+    track.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startTranslate = currentSlide * 100;
+      track.style.transition = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      const slideWidth = track.offsetWidth;
+      const dragPercent = (deltaX / slideWidth) * 100;
+      track.style.transform = `translateX(-${startTranslate - dragPercent}%)`;
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      
+      const deltaX = e.clientX - startX;
+      const slideWidth = track.offsetWidth;
+      
+      if (deltaX < -50) {
+        currentSlide = Math.min(currentSlide + 1, galleryItems.length - 1);
+      } else if (deltaX > 50) {
+        currentSlide = Math.max(currentSlide - 1, 0);
+      }
+      
+      track.style.transition = 'transform 0.6s ease';
+      updateGallerySlide();
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      startTranslate = currentSlide * 100;
+      track.style.transition = 'none';
+    });
+
+    track.addEventListener('touchmove', (e) => {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const slideWidth = track.offsetWidth;
+      const dragPercent = (deltaX / slideWidth) * 100;
+      track.style.transform = `translateX(-${startTranslate - dragPercent}%)`;
+    });
+
+    track.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX;
+      
+      if (deltaX < -50) {
+        currentSlide = Math.min(currentSlide + 1, galleryItems.length - 1);
+      } else if (deltaX > 50) {
+        currentSlide = Math.max(currentSlide - 1, 0);
+      }
+      
+      track.style.transition = 'transform 0.6s ease';
+      updateGallerySlide();
+    });
+
+    galleryInitialized = true;
+  }
+
+  function updateGallerySlide() {
+    const track = document.getElementById('galleryTrack');
+    if (!track) return;
+
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    galleryItems.forEach((item, index) => {
+      if (index === currentSlide) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+
+    const indicators = document.querySelectorAll('.gallery-indicator');
+    indicators.forEach((indicator, index) => {
+      if (index === currentSlide) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateGallerySlide();
+  }
+
+  // ==========================================
+  // BIRTHDAY FUNCTIONALITY (NO MICROPHONE)
   // ==========================================
 
   function initBirthday() {
@@ -254,7 +502,7 @@
       const phrase3 = [['G4', 7.0], ['G4', 7.6], ['G5', 8.2], ['E5', 8.8], ['C5', 9.4], ['B4', 9.9], ['A4', 10.5]];
       const phrase4 = [['F5', 11.4], ['F5', 12.0], ['E5', 12.6], ['C5', 13.2], ['D5', 13.8], ['C5', 14.4]];
       
-      const melody = [...phrase1, ...phrase1.map(([n, t]) => [n, t + 3.2]), ...phrase3, ...phrase4];
+      const melody = [...phrase1, ...phrase2, ...phrase3, ...phrase4];
       
       melody.forEach(([note, time]) => {
         playNote(getFrequency(note), time, 0.44);
@@ -262,7 +510,7 @@
     }
 
     // ==========================================
-    // CONFETTI - HEART PARTICLES (PRESERVED)
+    // CONFETTI - HEART PARTICLES
     // ==========================================
 
     function initConfetti() {
@@ -348,15 +596,17 @@
     }
 
     // ==========================================
-    // CANDLE BLOWING FUNCTIONALITY (PRESERVED)
+    // CANDLE BLOWING FUNCTIONALITY
     // ==========================================
 
     function extinguishCandles() {
       if (!candlesLit) return;
       candlesLit = false;
       
-      // Change cake image and hide flames
+      // Change cake image to blown out candles
       cakeImage.src = 'assets/Candle2.JPG';
+      
+      // Hide flame overlay
       if (flameOverlay) {
         flameOverlay.style.display = 'none';
       }
@@ -387,8 +637,10 @@
     }
 
     function relightCandles() {
-      // Change cake image back and show flames
+      // Change cake back to lit candles
       cakeImage.src = 'assets/Candle1.JPG';
+      
+      // Show flame overlay
       if (flameOverlay) {
         flameOverlay.style.display = 'block';
       }
@@ -419,50 +671,6 @@
         birthdaySong.pause();
         birthdaySong.currentTime = 0;
       }
-    }
-
-    // Microphone detection for blowing
-    function setupMicrophoneDetection() {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        return;
-      }
-      
-      navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-          const ctx = ensureAudio();
-          const source = ctx.createMediaStreamSource(stream);
-          const analyser = ctx.createAnalyser();
-          analyser.fftSize = 512;
-          
-          const dataArray = new Uint8Array(analyser.frequencyBinCount);
-          source.connect(analyser);
-          
-          let rafId;
-          
-          function detectBlow() {
-            analyser.getByteFrequencyData(dataArray);
-            
-            let sum = 0;
-            for (let i = 0; i < dataArray.length; i++) {
-              sum += dataArray[i];
-            }
-            const average = sum / dataArray.length;
-            
-            if (average > 42) {
-              extinguishCandles();
-              cancelAnimationFrame(rafId);
-              stream.getTracks().forEach(track => track.stop());
-              return;
-            }
-            
-            rafId = requestAnimationFrame(detectBlow);
-          }
-          
-          detectBlow();
-        })
-        .catch(() => {
-          // Microphone permission denied or unavailable
-        });
     }
 
     // Event listeners
@@ -499,9 +707,6 @@
       });
     }
 
-    // Setup microphone detection
-    setupMicrophoneDetection();
-
     // Prime audio context
     (function primeAudio() {
       try {
@@ -526,11 +731,11 @@
     if (!indicator) return;
     
     indicator.addEventListener('click', () => {
-      // Scroll down or navigate to journey page
-      const journeyPage = document.getElementById('journey');
-      if (journeyPage) {
-        navigateToPage('journey');
-      }
+      // Scroll down or navigate to next section
+      window.scrollBy({
+        top: window.innerHeight * 0.8,
+        behavior: 'smooth'
+      });
     });
   }
 
@@ -554,11 +759,27 @@
   // ==========================================
 
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing website...');
     initNavigation();
     initTypewriter();
     initFloatingHearts();
+    initShayariGift();
+    initLoveLetterEnvelope();
     initBirthday();
     initScrollIndicator();
+    
+    // Explicitly add listener to begin journey button
+    const beginBtn = document.getElementById('beginJourneyBtn');
+    if (beginBtn) {
+      console.log('Begin Journey button found');
+      beginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Begin Journey clicked');
+        navigateToPage('shayari');
+      });
+    } else {
+      console.error('Begin Journey button NOT found');
+    }
     
     // Handle window resize
     window.addEventListener('resize', handleResize);
