@@ -775,7 +775,7 @@
       beginBtn.addEventListener('click', (e) => {
         e.preventDefault();
         console.log('Begin Journey clicked');
-        navigateToPage('shayari');
+        navigateToPage('gallery');
       });
     } else {
       console.error('Begin Journey button NOT found');

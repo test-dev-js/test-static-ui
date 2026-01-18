@@ -14,7 +14,7 @@
   --rose-gold: #B76E79;
   --warm-red: #DC143C;
   --burgundy: #8B0A1A;
-  --gold: #FFD700;
+  --gold: #FF1493;
   --pearl: #FEFEFE;
   --cream: #FFF8F0;
   
@@ -92,7 +92,7 @@ body::after {
   background-image:
     radial-gradient(circle at 15% 25%, rgba(255, 105, 180, 0.3) 0%, transparent 20%),
     radial-gradient(circle at 85% 20%, rgba(255, 20, 147, 0.25) 0%, transparent 18%),
-    radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.2) 0%, transparent 15%),
+    radial-gradient(circle at 30% 70%, rgba(255, 105, 180, 0.2) 0%, transparent 15%),
     radial-gradient(circle at 75% 80%, rgba(255, 182, 193, 0.28) 0%, transparent 22%),
     radial-gradient(circle at 50% 45%, rgba(199, 21, 133, 0.22) 0%, transparent 16%);
   filter: blur(50px);
@@ -225,7 +225,7 @@ body::after {
   font-family: 'Cinzel', serif;
   font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 700;
-  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 30%, #FF1493 60%, #FFD700 100%);
+  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 30%, #FF1493 60%, #C71585 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -267,9 +267,9 @@ body::after {
 
 .typewriter-cursor {
   font-size: clamp(1.6rem, 3.5vw, 2.5rem);
-  color: var(--gold);
+  color: var(--hot-pink);
   animation: blink 1s step-end infinite;
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.8));
 }
 
 @keyframes blink {
@@ -307,7 +307,7 @@ body::after {
   font-family: 'Montserrat', sans-serif;
   background: var(--gradient-love);
   color: var(--pearl);
-  border: 3px solid var(--gold);
+  border: 3px solid rgba(255, 20, 147, 0.6);
   cursor: pointer;
   overflow: hidden;
   box-shadow: 
@@ -323,7 +323,7 @@ body::after {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.4) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   transition: width 0.6s, height 0.6s;
 }
@@ -363,7 +363,7 @@ body::after {
 
 .btn-icon {
   font-size: 1.8rem;
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.8));
 }
 
 /* ==========================================
@@ -421,7 +421,7 @@ body::after {
 .title-underline {
   width: 150px;
   height: 4px;
-  background: linear-gradient(90deg, transparent 0%, #FFD700 20%, #FF1493 50%, #FFD700 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, #FF69B4 20%, #FF1493 50%, #FF69B4 80%, transparent 100%);
   margin: 1rem auto;
   border-radius: 4px;
   box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
@@ -496,7 +496,7 @@ body::after {
 }
 
 .gift-sparkle {
-  fill: #FFD700;
+  fill: #FF69B4;
   opacity: 0.7;
   animation: giftSparkle 2s ease-in-out infinite;
 }
@@ -537,25 +537,18 @@ body::after {
 }
 
 .shayari-content {
-  max-width: 800px;
+  max-width: 850px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
   padding: 5rem 4rem;
-  background: 
-    linear-gradient(135deg, 
-      rgba(255, 105, 180, 0.15) 0%, 
-      rgba(199, 21, 133, 0.15) 100%);
-  backdrop-filter: blur(40px);
-  border-radius: 30px;
-  border: 3px solid rgba(255, 20, 147, 0.5);
+  background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%);
+  border-radius: 20px;
+  border: 3px solid var(--hot-pink);
   box-shadow: 
-    0 0 60px rgba(255, 20, 147, 0.5),
-    0 0 120px rgba(255, 105, 180, 0.3);
+    0 0 50px rgba(255, 20, 147, 0.6),
+    0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
-  transform: scale(0.8);
-  transition: transform 0.5s ease;
-}
-
-.shayari-modal.active .shayari-content {
-  transform: scale(1);
 }
 
 .modal-close {
@@ -566,7 +559,7 @@ body::after {
   height: 50px;
   border-radius: 50%;
   background: rgba(255, 20, 147, 0.2);
-  border: 2px solid var(--gold);
+  border: 2px solid rgba(255, 20, 147, 0.5);
   color: var(--pearl);
   font-size: 2rem;
   display: flex;
@@ -586,29 +579,26 @@ body::after {
 .hindi-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
-  color: var(--blush);
+  color: #2C2C2C;
   line-height: 2.3;
   font-style: italic;
   font-weight: 600;
-  text-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
   margin: 2rem 0;
 }
 
 .shayari-divider {
   font-size: 2rem;
-  color: var(--gold);
+  color: var(--warm-red);
   margin: 2.5rem 0;
-  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
 }
 
 .english-text {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.4rem, 2.5vw, 2rem);
-  color: var(--light-pink);
+  color: #2C2C2C;
   line-height: 2.2;
   font-style: italic;
   font-weight: 500;
-  text-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
   margin: 2rem 0;
 }
 
@@ -679,7 +669,7 @@ body::after {
 }
 
 .envelope-sparkles {
-  fill: #FFD700;
+  fill: #FF69B4;
   opacity: 0.6;
   animation: giftSparkle 2s ease-in-out infinite;
 }
@@ -728,9 +718,9 @@ body::after {
   padding: 5rem 4rem;
   background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%);
   border-radius: 20px;
-  border: 3px solid var(--gold);
+  border: 3px solid var(--hot-pink);
   box-shadow: 
-    0 0 50px rgba(255, 215, 0, 0.4),
+    0 0 50px rgba(255, 20, 147, 0.6),
     0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
 }
@@ -939,14 +929,24 @@ body::after {
   font-family: 'Cinzel', serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 50%, #FF1493 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 1rem;
   opacity: 0;
   transform: translateY(-30px);
   transition: all 1s ease;
   font-weight: 700;
+  filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.5));
+}
+
+.birthday-main-title-span {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 50%, #FF1493 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: 3px;
   filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.5));
 }
 
@@ -1075,7 +1075,7 @@ body::after {
   padding: 1.2rem 2.5rem;
   background: var(--gradient-love);
   color: var(--pearl);
-  border: 2px solid rgba(255, 215, 0, 0.5);
+  border: 2px solid rgba(255, 20, 147, 0.5);
   border-radius: 50px;
   font-size: 1.05rem;
   font-weight: 600;
@@ -1089,7 +1089,6 @@ body::after {
   font-family: 'Montserrat', sans-serif;
   position: relative;
   overflow: hidden;
-  margin-top: 3rem;
 }
 
 .nav-button::before {
@@ -1100,7 +1099,7 @@ body::after {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 215, 0, 0.3);
+  background: rgba(255, 105, 180, 0.3);
   transform: translate(-50%, -50%);
   transition: width 0.5s, height 0.5s;
 }
@@ -1113,7 +1112,7 @@ body::after {
 .nav-button:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 45px rgba(255, 20, 147, 0.7);
-  border-color: var(--gold);
+  border-color: var(--pearl);
 }
 
 /* ==========================================
