@@ -1,129 +1,259 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>For You — A Little Celebration</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You, Miss Sharma ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body class="spa">
-
-  <nav class="nav" aria-label="Main navigation">
-    <a href="#home" class="nav__brand">For You</a>
-    <ul class="nav__links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#moments">Moments</a></li>
-      <li><a href="#birthday" class="cta">Birthday</a></li>
-    </ul>
+<body>
+  
+  <!-- Ambient background particles -->
+  <div class="ambient-particles" aria-hidden="true"></div>
+  
+  <!-- Floating hearts decoration -->
+  <div class="floating-hearts" aria-hidden="true"></div>
+  
+  <!-- Elegant Navigation -->
+  <nav class="luxury-nav" id="mainNav">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-icon">✨</span>
+        <span class="logo-text">For You</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#journey" class="nav-link" data-page="journey">Our Journey</a></li>
+        <li><a href="#memories" class="nav-link" data-page="memories">Memories</a></li>
+        <li><a href="#birthday" class="nav-link nav-link--special" data-page="birthday">
+          <span class="sparkle">✨</span> Birthday <span class="sparkle">✨</span>
+        </a></li>
+      </ul>
+    </div>
   </nav>
 
-  <main id="content" class="container">
-
-    <!-- HOME / HERO -->
-    <section id="home" class="hero hero--full" data-section>
-
-      <!-- Full-bleed background grid inserted behind existing overlay and content -->
-      <div class="hero-bg-grid" aria-hidden="true">
-        <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80');"></div>
-        <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1491557345352-5929e343eb89?auto=format&fit=crop&w=1600&q=80');"></div>
-        <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=80');"></div>
-        <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80');"></div>
-      </div>
-
-      <div class="hero__overlay" aria-hidden="true"></div>
-
-      <div class="hero__inner">
-        <h1 class="hero__title">Hey, Miss. Sharma</h1>
-
-        <div class="typewriter-line" aria-hidden="false">
-          <span id="typewriter" aria-live="polite"></span><span class="caret">|</span>
+  <!-- Page Container -->
+  <main class="page-container">
+    
+    <!-- HOME PAGE -->
+    <section id="home" class="page active" data-page="home">
+      <div class="hero-section">
+        <!-- Animated background gradient -->
+        <div class="gradient-bg"></div>
+        
+        <!-- Elegant geometric patterns -->
+        <div class="geometric-pattern"></div>
+        
+        <div class="hero-content">
+          <div class="hero-greeting">
+            <span class="greeting-sparkle">✨</span>
+            <h1 class="hero-title">Hey, Miss. Sharma</h1>
+            <span class="greeting-sparkle">✨</span>
+          </div>
+          
+          <!-- Preserved Typewriter Effect -->
+          <div class="typewriter-container">
+            <span id="typewriter" class="typewriter-text"></span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+          
+          <p class="hero-subtitle">
+            A little effort just for you, from one & only yours sweet potato.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="#birthday" class="btn-primary" data-page="birthday">
+              <span class="btn-icon">🎂</span>
+              <span>Open Birthday Surprise</span>
+              <span class="btn-shine"></span>
+            </a>
+            <a href="#journey" class="btn-secondary" data-page="journey">
+              <span>Explore Our Story</span>
+            </a>
+          </div>
         </div>
-
-        <p class="hero__lead">A little effort just for you, from one &amp; only yours sweet potato.</p>
-
-        <p><a href="#birthday" class="btn btn--primary" data-no-transition>Open the Birthday Surprise</a></p>
-      </div>
-
-      <button class="scroll-down" id="scrollDown" aria-label="Scroll to next section">
-        <span class="arrow" aria-hidden="true"></span>
-      </button>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="panel" data-section>
-      <h2>Why this</h2>
-      <p>This tiny site is a heartfelt page made to celebrate you. It’s responsive, warm, and crafted to feel intimate on every screen.</p>
-    </section>
-
-    <!-- MOMENTS / GALLERY -->
-    <section id="moments" class="panel" data-section>
-      <h2>Little Moments</h2>
-      <div class="grid">
-        <div class="card">💌 A note</div>
-        <div class="card">🌹 A rose</div>
-        <div class="card">✨ Our memories</div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+          <span class="scroll-text">Scroll to explore</span>
+          <div class="scroll-arrow"></div>
+        </div>
       </div>
     </section>
 
-    <!-- BIRTHDAY -->
-    <section id="birthday" class="panel birthday-panel" data-section>
-      <h1 class="birthday-title" id="birthday-message" style="opacity: 0; transform: translateY(-50px); transition: all 1s ease-out; margin-bottom: 1rem;">Happy Birthday Love 🥰❤️</h1>
-      <p class="birthday-sub" id="birthday-subtitle" style="transition: opacity 0.5s ease-out;">Time to blow the candles...simply tap the cake 😊</p>
-
-      <div class="birthday-stage" style="position: relative; display: inline-block;">
-        <img 
-          id="cake-image-index" 
-          src="assets/Candle1.JPG" 
-          alt="Birthday cake with candles" 
-          style="max-width: 100%; height: auto; cursor: pointer; border-radius: 12px; box-shadow: 0 8px 24px rgba(230, 161, 184, 0.3); max-height: 500px; object-fit: contain; display: block; background: linear-gradient(135deg, #fff5f9 0%, #ffeef6 100%);"
-        />
-        <!-- Animated flames overlay (only visible when candles are on) -->
-        <svg id="flame-overlay" width="100%" height="100%" viewBox="0 0 400 300" style="position: absolute; top: 0; left: 0; pointer-events: none;" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <style>
-              @keyframes flicker {
-                0%, 100% { opacity: 1; transform: scale(1) translateY(0); }
-                50% { opacity: 0.8; transform: scale(1.1) translateY(-2px); }
-              }
-              .animated-flame {
-                animation: flicker 0.3s ease-in-out infinite;
-              }
-              .animated-flame:nth-child(2) { animation-delay: 0.1s; }
-              .animated-flame:nth-child(3) { animation-delay: 0.2s; }
-              .animated-flame:nth-child(4) { animation-delay: 0.15s; }
-              .animated-flame:nth-child(5) { animation-delay: 0.25s; }
-              .animated-flame:nth-child(6) { animation-delay: 0.05s; }
-              .animated-flame:nth-child(7) { animation-delay: 0.3s; }
-            </style>
-          </defs>
-          <!-- Flames positioned over candles (adjust positions to match your image) -->
-          <g id="flames-group">
-            <path class="animated-flame" d="M80 80 C83 74, 89 74, 92 80 C89 78, 86 86, 80 80Z" fill="#ffd86b" opacity="0.9"/>
-            <path class="animated-flame" d="M130 80 C133 74, 139 74, 142 80 C139 78, 136 86, 130 80Z" fill="#ffd86b" opacity="0.9"/>
-            <path class="animated-flame" d="M180 80 C183 74, 189 74, 192 80 C189 78, 186 86, 180 80Z" fill="#ffd86b" opacity="0.9"/>
-            <path class="animated-flame" d="M230 80 C233 74, 239 74, 242 80 C239 78, 236 86, 230 80Z" fill="#ffd86b" opacity="0.9"/>
-            <path class="animated-flame" d="M280 80 C283 74, 289 74, 292 80 C289 78, 286 86, 280 80Z" fill="#ffd86b" opacity="0.9"/>
-            <path class="animated-flame" d="M330 70 C333 64, 339 64, 342 70 C339 68, 336 76, 330 70Z" fill="#ffd86b" opacity="0.9"/>
-          </g>
-        </svg>
+    <!-- JOURNEY PAGE -->
+    <section id="journey" class="page" data-page="journey">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="page-subtitle">Our Beautiful</span>
+          <h2 class="page-title">Journey Together</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="journey-timeline">
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-icon">💫</div>
+            <div class="timeline-content">
+              <h3>The Beginning</h3>
+              <p>Where our paths crossed and something magical began to unfold...</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-icon">💝</div>
+            <div class="timeline-content">
+              <h3>Growing Together</h3>
+              <p>Every moment spent together, building memories that last forever...</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-icon">🌟</div>
+            <div class="timeline-content">
+              <h3>Today & Beyond</h3>
+              <p>Celebrating you, celebrating us, and all the adventures ahead...</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="journey-quote">
+          <p>"In your smile, I found my home. In your eyes, I found my dreams."</p>
+        </div>
       </div>
+    </section>
 
-      <div class="birthday-controls">
-        <button id="playBtn" class="btn">Play Birthday</button>
-        <button id="resetBtn" class="btn btn--muted">Reset Candles</button>
+    <!-- MEMORIES PAGE -->
+    <section id="memories" class="page" data-page="memories">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="page-subtitle">Cherished</span>
+          <h2 class="page-title">Moments Together</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="memories-grid">
+          <div class="memory-card" data-aos="zoom-in">
+            <div class="memory-icon">💌</div>
+            <h3>Love Letters</h3>
+            <p>Words that touched the heart and soul</p>
+          </div>
+          
+          <div class="memory-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="memory-icon">🌹</div>
+            <h3>Little Gestures</h3>
+            <p>Every rose, every smile, every moment</p>
+          </div>
+          
+          <div class="memory-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="memory-icon">✨</div>
+            <h3>Magic Moments</h3>
+            <p>Times when everything felt just perfect</p>
+          </div>
+          
+          <div class="memory-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="memory-icon">🎭</div>
+            <h3>Adventures</h3>
+            <p>Stories we created, journeys we shared</p>
+          </div>
+          
+          <div class="memory-card" data-aos="zoom-in" data-aos-delay="400">
+            <div class="memory-icon">🌙</div>
+            <h3>Quiet Nights</h3>
+            <p>Peaceful moments, deep conversations</p>
+          </div>
+          
+          <div class="memory-card" data-aos="zoom-in" data-aos-delay="500">
+            <div class="memory-icon">💫</div>
+            <h3>Dreams Together</h3>
+            <p>Building castles in the air, together</p>
+          </div>
+        </div>
       </div>
+    </section>
 
+    <!-- BIRTHDAY PAGE -->
+    <section id="birthday" class="page" data-page="birthday">
+      <div class="birthday-container">
+        <div class="birthday-header">
+          <h1 class="birthday-main-title" id="birthday-message">
+            Happy Birthday Love 🥰❤️
+          </h1>
+          <p class="birthday-instruction" id="birthday-subtitle">
+            Time to blow the candles...simply tap the cake 😊
+          </p>
+        </div>
+        
+        <div class="birthday-stage">
+          <!-- Cake container with magical effects -->
+          <div class="cake-wrapper">
+            <div class="cake-glow"></div>
+            <div class="cake-sparkles"></div>
+            
+            <img 
+              id="cake-image-index" 
+              src="assets/Candle1.JPG" 
+              alt="Birthday cake with candles" 
+              class="cake-image"
+              tabindex="0"
+              role="button"
+              aria-label="Click to blow out candles"
+            />
+            
+            <!-- Animated flame overlay -->
+            <svg id="flame-overlay" class="flame-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <g id="flames-group" filter="url(#glow)">
+                <path class="animated-flame" d="M80 80 C83 74, 89 74, 92 80 C89 78, 86 86, 80 80Z" fill="#ffd86b" opacity="0.9"/>
+                <path class="animated-flame" d="M130 80 C133 74, 139 74, 142 80 C139 78, 136 86, 130 80Z" fill="#ffd86b" opacity="0.9"/>
+                <path class="animated-flame" d="M180 80 C183 74, 189 74, 192 80 C189 78, 186 86, 180 80Z" fill="#ffd86b" opacity="0.9"/>
+                <path class="animated-flame" d="M230 80 C233 74, 239 74, 242 80 C239 78, 236 86, 230 80Z" fill="#ffd86b" opacity="0.9"/>
+                <path class="animated-flame" d="M280 80 C283 74, 289 74, 292 80 C289 78, 286 86, 280 80Z" fill="#ffd86b" opacity="0.9"/>
+                <path class="animated-flame" d="M330 70 C333 64, 339 64, 342 70 C339 68, 336 76, 330 70Z" fill="#ffd86b" opacity="0.9"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        
+        <div class="birthday-controls">
+          <button id="playBtn" class="btn-birthday">
+            <span class="btn-icon">▶</span>
+            <span>Play Birthday Song</span>
+          </button>
+          <button id="resetBtn" class="btn-birthday-secondary">
+            <span class="btn-icon">🔄</span>
+            <span>Reset Candles</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Confetti Canvas -->
       <canvas id="confetti" class="confetti-canvas" aria-hidden="true"></canvas>
+      
+      <!-- Audio -->
       <audio id="birthday-song-index" preload="auto" src="assets/HBD.mp4"></audio>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <p>© 2026 — With love</p>
+  <!-- Elegant Footer -->
+  <footer class="luxury-footer">
+    <div class="footer-content">
+      <p class="footer-text">Made with endless love & care ❤️</p>
+      <p class="footer-copyright">© 2026 — For Miss Sharma, with all my heart</p>
+    </div>
   </footer>
 
-  <script src="assets/script.js" defer></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
