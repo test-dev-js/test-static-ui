@@ -614,16 +614,10 @@
       // Start confetti
       startConfetti();
       
-      // Hide subtitle and show birthday message
-      if (birthdaySubtitle) {
-        birthdaySubtitle.style.opacity = '0';
-      }
-      
-      if (birthdayMessage) {
-        setTimeout(() => {
-          birthdayMessage.style.opacity = '1';
-          birthdayMessage.style.transform = 'translateY(0)';
-        }, 300);
+      // Update #caked-wish content
+      const cakedWish = document.getElementById('caked-wish');
+      if (cakedWish) {
+        cakedWish.innerHTML = '<h2 class="page-title">Happy Birthday Love 🥰 ❤️</h2>';
       }
       
       // Play birthday song
@@ -656,14 +650,14 @@
         audioCtx = null;
       }
       
-      // Show subtitle and hide birthday message
-      if (birthdaySubtitle) {
-        birthdaySubtitle.style.opacity = '1';
-      }
-      
-      if (birthdayMessage) {
-        birthdayMessage.style.opacity = '0';
-        birthdayMessage.style.transform = 'translateY(-50px)';
+      // Restore original #caked-wish content
+      const cakedWish = document.getElementById('caked-wish');
+      if (cakedWish) {
+        cakedWish.innerHTML = `
+          <span class="page-subtitle">Han byii...kisika bday hai kya?...Chalo cake pe tap karo and...</span>
+          <h2 class="page-title">Candles blow karo...</h2>
+          <div class="title-underline"></div>
+        `;
       }
       
       // Stop birthday song
