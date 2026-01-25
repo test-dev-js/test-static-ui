@@ -40,11 +40,50 @@
       // Trigger specific page initializations
       if (pageId === 'gallery') {
         initializeGallerySlider();
+      } else if (pageId === 'birthday') {
+        // Reset birthday page when navigating to it
+        resetBirthdayPage();
       }
     } else {
       console.error('Page not found:', pageId);
     }
   };
+  
+  // Function to reset birthday page
+  function resetBirthdayPage() {
+    console.log('Resetting birthday page...');
+    const cakeImage = document.getElementById('cake-image-index');
+    const birthdaySong = document.getElementById('birthday-song-index');
+    const cakedWish = document.getElementById('caked-wish');
+    const confettiCanvas = document.getElementById('confetti');
+    
+    // Reset cake image
+    if (cakeImage) {
+      cakeImage.src = 'assets/Candle1.JPG';
+    }
+    
+    // Stop and reset audio
+    if (birthdaySong) {
+      birthdaySong.pause();
+      birthdaySong.currentTime = 0;
+      birthdaySong.loop = false;
+    }
+    
+    // Reset header text
+    if (cakedWish) {
+      cakedWish.innerHTML = `
+        <span class="page-subtitle">Han byii...kisika bday hai kya?...Chalo cake pe tap karo and...</span>
+        <h2 class="page-title">Candles blow karo...</h2>
+        <div class="title-underline"></div>
+      `;
+    }
+    
+    // Clear confetti
+    if (confettiCanvas) {
+      const ctx = confettiCanvas.getContext('2d');
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+  }
 
   function initNavigation() {
     const navButtons = document.querySelectorAll('[data-page]');
@@ -191,6 +230,8 @@
     const giftBox = document.getElementById('giftBox');
     const shayariModal = document.getElementById('shayariModal');
     const shayariClose = document.getElementById('shayariClose');
+    const shayariPlayBtn = document.getElementById('shayariPlayBtn');
+    const shayariAudio = document.getElementById('shayari-audio');
     
     if (!giftBow || !giftBox || !shayariModal) return;
 
@@ -204,6 +245,16 @@
 
     const closeShayari = () => {
       shayariModal.classList.remove('active');
+      
+      // Stop audio when modal closes
+      if (shayariAudio && !shayariAudio.paused) {
+        shayariAudio.pause();
+        shayariAudio.currentTime = 0;
+        if (shayariPlayBtn) {
+          shayariPlayBtn.classList.remove('playing');
+        }
+      }
+      
       setTimeout(() => {
         giftBox.classList.remove('unwrapping');
       }, 500);
@@ -214,6 +265,32 @@
     
     if (shayariClose) {
       shayariClose.addEventListener('click', closeShayari);
+    }
+    
+    // Audio play button functionality
+    if (shayariPlayBtn && shayariAudio) {
+      shayariPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent modal close
+        
+        if (shayariAudio.paused) {
+          // Set audio source to HBD.mp4
+          if (!shayariAudio.src || shayariAudio.src === '') {
+            shayariAudio.src = 'assets/HBD.mp4';
+          }
+          shayariAudio.play().catch(err => {
+            console.log('Shayari audio playback failed:', err);
+          });
+          shayariPlayBtn.classList.add('playing');
+        } else {
+          shayariAudio.pause();
+          shayariPlayBtn.classList.remove('playing');
+        }
+      });
+      
+      // Update button when audio ends
+      shayariAudio.addEventListener('ended', () => {
+        shayariPlayBtn.classList.remove('playing');
+      });
     }
     
     shayariModal.addEventListener('click', (e) => {
@@ -239,6 +316,8 @@
     const envelope = document.getElementById('envelope');
     const letterModal = document.getElementById('letterModal');
     const letterClose = document.getElementById('letterClose');
+    const letterPlayBtn = document.getElementById('letterPlayBtn');
+    const letterAudio = document.getElementById('letter-audio');
     
     if (!envelopeWrapper || !letterModal) return;
 
@@ -252,6 +331,16 @@
 
     const closeLetter = () => {
       letterModal.classList.remove('active');
+      
+      // Stop audio when modal closes
+      if (letterAudio && !letterAudio.paused) {
+        letterAudio.pause();
+        letterAudio.currentTime = 0;
+        if (letterPlayBtn) {
+          letterPlayBtn.classList.remove('playing');
+        }
+      }
+      
       setTimeout(() => {
         envelopeWrapper.classList.remove('opening');
       }, 500);
@@ -261,6 +350,32 @@
     
     if (letterClose) {
       letterClose.addEventListener('click', closeLetter);
+    }
+    
+    // Audio play button functionality
+    if (letterPlayBtn && letterAudio) {
+      letterPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent modal close
+        
+        if (letterAudio.paused) {
+          // Set audio source to HBD.mp4
+          if (!letterAudio.src || letterAudio.src === '') {
+            letterAudio.src = 'assets/HBD.mp4';
+          }
+          letterAudio.play().catch(err => {
+            console.log('Letter audio playback failed:', err);
+          });
+          letterPlayBtn.classList.add('playing');
+        } else {
+          letterAudio.pause();
+          letterPlayBtn.classList.remove('playing');
+        }
+      });
+      
+      // Update button when audio ends
+      letterAudio.addEventListener('ended', () => {
+        letterPlayBtn.classList.remove('playing');
+      });
     }
     
     letterModal.addEventListener('click', (e) => {
@@ -284,6 +399,7 @@
   let currentSlide = 0;
   let galleryItems = [];
   let galleryInitialized = false;
+  let galleryAutoRotateInterval = null;
 
   function initializeGallerySlider() {
     if (galleryInitialized) return;
@@ -320,9 +436,11 @@
       if (e.key === 'ArrowLeft') {
         currentSlide = (currentSlide - 1 + galleryItems.length) % galleryItems.length;
         updateGallerySlide();
+        startGalleryAutoRotate(); // Reset timer
       } else if (e.key === 'ArrowRight') {
         currentSlide = (currentSlide + 1) % galleryItems.length;
         updateGallerySlide();
+        startGalleryAutoRotate(); // Reset timer
       }
     });
 
@@ -362,6 +480,7 @@
       
       track.style.transition = 'transform 0.6s ease';
       updateGallerySlide();
+      startGalleryAutoRotate(); // Reset timer
     });
 
     // Touch swipe
@@ -394,6 +513,32 @@
     });
 
     galleryInitialized = true;
+    
+    // Start auto-rotation
+    startGalleryAutoRotate();
+  }
+
+  function startGalleryAutoRotate() {
+    // Clear any existing interval
+    if (galleryAutoRotateInterval) {
+      clearInterval(galleryAutoRotateInterval);
+    }
+    
+    // Auto-rotate every 4 seconds
+    galleryAutoRotateInterval = setInterval(() => {
+      const galleryPage = document.getElementById('gallery');
+      if (galleryPage && galleryPage.classList.contains('active')) {
+        currentSlide = (currentSlide + 1) % galleryItems.length;
+        updateGallerySlide();
+      }
+    }, 4000);
+  }
+
+  function stopGalleryAutoRotate() {
+    if (galleryAutoRotateInterval) {
+      clearInterval(galleryAutoRotateInterval);
+      galleryAutoRotateInterval = null;
+    }
   }
 
   function updateGallerySlide() {
@@ -423,29 +568,38 @@
   function goToSlide(index) {
     currentSlide = index;
     updateGallerySlide();
+    
+    // Reset auto-rotate timer when user manually changes slide
+    startGalleryAutoRotate();
   }
 
   // ==========================================
   // BIRTHDAY FUNCTIONALITY (NO MICROPHONE)
   // ==========================================
 
+  let candlesLit = true;
+  let confettiRunning = false;
+  let confettiRAF = null;
+  let confettiPieces = [];
+
   function initBirthday() {
+    console.log('Initializing birthday functionality...');
     const cakeImage = document.getElementById('cake-image-index');
     const confettiCanvas = document.getElementById('confetti');
     const playBtn = document.getElementById('playBtn');
     const resetBtn = document.getElementById('resetBtn');
-    const birthdayMessage = document.getElementById('birthday-message');
-    const birthdaySubtitle = document.getElementById('birthday-subtitle');
-    const flameOverlay = document.getElementById('flame-overlay');
     const birthdaySong = document.getElementById('birthday-song-index');
     
-    if (!cakeImage || !confettiCanvas) return;
+    console.log('Cake image found:', !!cakeImage);
+    console.log('Confetti canvas found:', !!confettiCanvas);
+    console.log('Birthday song found:', !!birthdaySong);
     
-    let candlesLit = true;
+    if (!cakeImage || !confettiCanvas) {
+      console.error('Missing required elements!');
+      return;
+    }
+    
     let audioCtx = null;
-    let confettiRunning = false;
-    let confettiRAF = null;
-    let confettiPieces = [];
 
     // Audio Context Helper
     function ensureAudio() {
@@ -599,59 +753,66 @@
     // CANDLE BLOWING FUNCTIONALITY
     // ==========================================
 
-    function extinguishCandles() {
-      if (!candlesLit) return;
+    window.extinguishCandles = function() {
+      if (!candlesLit) {
+        console.log('Candles already out');
+        return;
+      }
       candlesLit = false;
       
-      // Change cake image to blown out candles
-      cakeImage.src = 'assets/Candle2.JPG';
+      console.log('Extinguishing candles...');
+      const cakeImg = document.getElementById('cake-image-index');
+      const song = document.getElementById('birthday-song-index');
+      const cakedWish = document.getElementById('caked-wish');
       
-      // Hide flame overlay
-      if (flameOverlay) {
-        flameOverlay.style.display = 'none';
+      // Change cake image
+      if (cakeImg) {
+        cakeImg.src = 'assets/Candle2.JPG';
+        console.log('Image src set to:', cakeImg.src);
+      } else {
+        console.error('Cake image not found!');
       }
       
       // Start confetti
       startConfetti();
+      console.log('Confetti started');
       
-      // Update #caked-wish content
-      const cakedWish = document.getElementById('caked-wish');
+      // Update text
       if (cakedWish) {
-        cakedWish.innerHTML = '<h2 class="page-title">Happy Birthday Love 🥰 ❤️</h2>';
+        cakedWish.innerHTML = '<h2 id="HBDLove" class="page-title">Happy Birthday Love ❤️</h2><div class="title-underline"></div>';
+        console.log('Text updated to Happy Birthday');
       }
       
-      // Play birthday song
-      if (birthdaySong) {
-        birthdaySong.currentTime = 0;
-        birthdaySong.volume = 1.0;
-        birthdaySong.play().catch(err => {
-          console.log('Audio playback failed:', err);
+      // Play audio
+      if (song) {
+        song.currentTime = 0;
+        song.volume = 1.0;
+        song.loop = true;
+        song.play().then(() => {
+          console.log('Audio started successfully');
+        }).catch(err => {
+          console.error('Audio failed:', err);
         });
+      } else {
+        console.error('Audio element not found!');
       }
-    }
+    };
 
-    function relightCandles() {
-      // Change cake back to lit candles
-      cakeImage.src = 'assets/Candle1.JPG';
+    window.relightCandles = function() {
+      console.log('Relighting candles...');
+      const cakeImg = document.getElementById('cake-image-index');
+      const song = document.getElementById('birthday-song-index');
+      const cakedWish = document.getElementById('caked-wish');
       
-      // Show flame overlay
-      if (flameOverlay) {
-        flameOverlay.style.display = 'block';
+      // Reset image
+      if (cakeImg) {
+        cakeImg.src = 'assets/Candle1.JPG';
       }
       
       candlesLit = true;
       stopConfetti();
       
-      // Close audio context
-      if (audioCtx && audioCtx.close) {
-        try {
-          audioCtx.close();
-        } catch (e) {}
-        audioCtx = null;
-      }
-      
-      // Restore original #caked-wish content
-      const cakedWish = document.getElementById('caked-wish');
+      // Reset text
       if (cakedWish) {
         cakedWish.innerHTML = `
           <span class="page-subtitle">Han byii...kisika bday hai kya?...Chalo cake pe tap karo and...</span>
@@ -660,44 +821,66 @@
         `;
       }
       
-      // Stop birthday song
-      if (birthdaySong) {
-        birthdaySong.pause();
-        birthdaySong.currentTime = 0;
+      // Stop audio
+      if (song) {
+        song.pause();
+        song.currentTime = 0;
+        song.loop = false;
       }
-    }
+      
+      // Close audio context
+      if (audioCtx && audioCtx.close) {
+        try {
+          audioCtx.close();
+        } catch (e) {}
+        audioCtx = null;
+      }
+    };
 
     // Event listeners
     if (cakeImage) {
+      console.log('Adding click listener to cake');
       cakeImage.addEventListener('click', (e) => {
         e.preventDefault();
-        extinguishCandles();
+        e.stopPropagation(); // Prevent event bubbling
+        console.log('Cake clicked!');
+        window.extinguishCandles();
       });
       
       cakeImage.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          extinguishCandles();
+          e.stopPropagation(); // Prevent event bubbling
+          window.extinguishCandles();
         }
       });
+    } else {
+      console.error('Cake image element not found for event listener!');
     }
 
     if (playBtn) {
-      playBtn.addEventListener('click', () => {
+      console.log('Adding click listener to play button');
+      playBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent event bubbling
+        console.log('Play button clicked!');
         try {
           ensureAudio();
           if (audioCtx && audioCtx.state === 'suspended') {
             audioCtx.resume();
           }
         } catch (e) {}
-        extinguishCandles();
+        window.extinguishCandles();
       });
     }
 
     if (resetBtn) {
+      console.log('Adding click listener to reset button');
       resetBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        relightCandles();
+        e.stopPropagation(); // Prevent event bubbling
+        console.log('Reset button clicked!');
+        window.relightCandles();
       });
     }
 
